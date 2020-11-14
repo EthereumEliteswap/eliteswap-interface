@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Code } from 'react-feather'
+import { Code, MessageCircle, PieChart, Twitter } from 'react-feather'
 import styled from 'styled-components'
 import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg'
 // import { useActiveWeb3React } from '../../hooks'
@@ -85,7 +85,7 @@ const MenuItem = styled(ExternalLink)`
   }
 `
 
-const CODE_LINK = 'https://github.com/Uniswap/uniswap-interface'
+const CODE_LINK = 'https://github.com/EthereumEliteswap'
 
 export default function Menu() {
   // const { account } = useActiveWeb3React()
@@ -117,15 +117,19 @@ export default function Menu() {
             <Code size={14} />
             Code
           </MenuItem>
-          {/* <MenuItem id="link" href="https://discord.gg/EwFs3Pp">
+          <MenuItem id="link" href="https://discord.gg/yFsjhuQ7Kj">
             <MessageCircle size={14} />
             Discord
           </MenuItem>
-          <MenuItem id="link" href="https://uniswap.info/">
+          <MenuItem id="link" href="https://telegram.org/@EliteSwap">
             <PieChart size={14} />
-            Analytics
+            Telegram
           </MenuItem>
-          {account && (
+          <MenuItem id="link" href="https://twitter.com/EliteSwap2020?s=09">
+            <Twitter size={14} />
+            Twitter
+          </MenuItem>
+          {/* {account && (
             <ButtonPrimary onClick={openClaimModal} padding="8px 16px" width="100%" borderRadius="12px" mt="0.5rem">
               Claim UNI
             </ButtonPrimary>
