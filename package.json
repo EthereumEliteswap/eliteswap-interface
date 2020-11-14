@@ -1,6 +1,6 @@
 {
-  "name": "@uniswap/interface",
-  "description": "Uniswap Interface",
+  "name": "@eliteswap/interface",
+  "description": "Eliteswap Interface",
   "homepage": ".",
   "private": true,
   "devDependencies": {
@@ -43,7 +43,7 @@
     "cids": "^1.0.0",
     "copy-to-clipboard": "^3.2.0",
     "cross-env": "^7.0.2",
-    "cypress": "^4.11.0",
+    "cypress": "^5.5.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
