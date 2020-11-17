@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 // import Logo from '../../assets/svg/logo.svg'
-import Logo from '../../assets/images/logo.png'
+import Logo from '../../assets/images/eliteswap_logo.png'
 // import LogoDark from '../../assets/svg/logo_white.svg'
 import { useActiveWeb3React } from '../../hooks'
 import { useDarkModeManager } from '../../state/user/hooks'
@@ -295,7 +295,7 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <UniIcon>
-            <img width={'24px'} src={isDark ? Logo: Logo} alt="logo" />
+            <img width={'120px'} src={isDark ? Logo: Logo} alt="logo" />
           </UniIcon>
         </Title>
         <HeaderLinks>
@@ -315,8 +315,8 @@ export default function Header() {
           >
             {t('pool')}
           </StyledNavLink>
-          <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
-            Elite
+          <StyledNavLink id={`stake-nav-link`} to={'/elites'}>
+            Elites
           </StyledNavLink>
           <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
             Vote
