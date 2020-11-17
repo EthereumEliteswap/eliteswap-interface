@@ -1,13 +1,13 @@
 import { TokenAmount, Pair, Currency } from '@eliteswap/sdk'
 import { useMemo } from 'react'
-import { abi as IUniswapV2PairABI } from '@eliteswap/v2-core/build/IUniswapV2Pair.json'
+import { abi as IEliteswapV2PairABI } from '@eliteswap/v2-core/build/IEliteswapV2Pair.json'
 import { Interface } from '@ethersproject/abi'
 import { useActiveWeb3React } from '../hooks'
 
 import { useMultipleContractSingleData } from '../state/multicall/hooks'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
 
-const PAIR_INTERFACE = new Interface(IUniswapV2PairABI)
+const PAIR_INTERFACE = new Interface(IEliteswapV2PairABI)
 
 export enum PairState {
   LOADING,

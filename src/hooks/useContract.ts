@@ -1,9 +1,9 @@
 import { Contract } from '@ethersproject/contracts'
-import { abi as GOVERNANCE_ABI } from '@eliteswap/governance/build/GovernorAlpha.json'
-import { abi as UNI_ABI } from '@eliteswap/governance/build/Uni.json'
-import { abi as STAKING_REWARDS_ABI } from '@eliteswap/liquidity-staker/build/StakingRewards.json'
+import { abi as GOVERNANCE_ABI } from '@eliteswap/governance/build/EliteGovernorAlpha.json'
+import { abi as UNI_ABI } from '@eliteswap/governance/build/Elt.json'
+import { abi as STAKING_REWARDS_ABI } from '@eliteswap/liquidity-staker/build/EliteStakingRewards.json'
 import { ChainId, WETH } from '@eliteswap/sdk'
-import { abi as IUniswapV2PairABI } from '@eliteswap/v2-core/build/IUniswapV2Pair.json'
+import { abi as IEliteswapV2PairABI } from '@eliteswap/v2-core/build/IEliteswapV2Pair.json'
 import { useMemo } from 'react'
 import { GOVERNANCE_ADDRESS, UNI } from '../constants'
 import {
@@ -93,7 +93,7 @@ export function useBytes32TokenContract(tokenAddress?: string, withSignerIfPossi
 }
 
 export function usePairContract(pairAddress?: string, withSignerIfPossible?: boolean): Contract | null {
-  return useContract(pairAddress, IUniswapV2PairABI, withSignerIfPossible)
+  return useContract(pairAddress, IEliteswapV2PairABI, withSignerIfPossible)
 }
 
 export function useMulticallContract(): Contract | null {
