@@ -1,8 +1,9 @@
-// the Uniswap Default token list lives here
-export const DEFAULT_TOKEN_LIST_URL = 'tokens.uniswap.eth'
+// the Elite Swap Default token list lives here
+export const DEFAULT_TOKEN_LIST_URL = 'tokens.eliteswap.eth'
 
 export const DEFAULT_LIST_OF_LISTS: string[] = [
   DEFAULT_TOKEN_LIST_URL,
+  'tokens.uniswap.eth', // uniswap
   't2crtokens.eth', // kleros
   'tokens.1inch.eth', // 1inch
   'synths.snx.eth',
