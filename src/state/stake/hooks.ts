@@ -6,7 +6,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
 import { tryParseAmount } from '../swap/hooks'
 
-export const STAKING_GENESIS = 1600387200
+export const STAKING_GENESIS = 1605484800
 
 export const REWARDS_DURATION_DAYS = 60
 
