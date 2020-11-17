@@ -24,7 +24,7 @@ or visit [app.uniswap.org](https://app.uniswap.org).
 ## Listing a token
 
 Please see the
-[@uniswap/default-token-list](https://github.com/uniswap/default-token-list) 
+[@eliteswap/default-token-list](https://github.com/EthereumEliteswap/default-token-list) 
 repository.
 
 ## Development
