@@ -1,7 +1,7 @@
-import { UNI } from './../../constants/index'
+import { ELT } from './../../constants/index'
 import { TokenAmount } from '@eliteswap/sdk'
 import { isAddress } from 'ethers/lib/utils'
-import { useGovernanceContract, useUniContract } from '../../hooks/useContract'
+import { useGovernanceContract, useEltContract } from '../../hooks/useContract'
 import { useSingleCallResult, useSingleContractMultipleData } from '../multicall/hooks'
 import { useActiveWeb3React } from '../../hooks'
 import { ethers, utils } from 'ethers'
@@ -148,47 +148,47 @@ export function useProposalData(id: string): ProposalData | undefined {
 // get the users delegatee if it exists
 export function useUserDelegatee(): string {
   const { account } = useActiveWeb3React()
-  const uniContract = useUniContract()
-  const { result } = useSingleCallResult(uniContract, 'delegates', [account ?? undefined])
+  const eltContract = useEltContract()
+  const { result } = useSingleCallResult(eltContract, 'delegates', [account ?? undefined])
   return result?.[0] ?? undefined
 }
 
 // gets the users current votes
 export function useUserVotes(): TokenAmount | undefined {
   const { account, chainId } = useActiveWeb3React()
-  const uniContract = useUniContract()
+  const eltContract = useEltContract()
 
   // check for available votes
-  const uni = chainId ? UNI[chainId] : undefined
-  const votes = useSingleCallResult(uniContract, 'getCurrentVotes', [account ?? undefined])?.result?.[0]
-  return votes && uni ? new TokenAmount(uni, votes) : undefined
+  const elt = chainId ? ELT[chainId] : undefined
+  const votes = useSingleCallResult(eltContract, 'getCurrentVotes', [account ?? undefined])?.result?.[0]
+  return votes && elt ? new TokenAmount(elt, votes) : undefined
 }
 
 // fetch available votes as of block (usually proposal start block)
 export function useUserVotesAsOfBlock(block: number | undefined): TokenAmount | undefined {
   const { account, chainId } = useActiveWeb3React()
-  const uniContract = useUniContract()
+  const eltContract = useEltContract()
 
   // check for available votes
-  const uni = chainId ? UNI[chainId] : undefined
-  const votes = useSingleCallResult(uniContract, 'getPriorVotes', [account ?? undefined, block ?? undefined])
+  const elt = chainId ? ELT[chainId] : undefined
+  const votes = useSingleCallResult(eltContract, 'getPriorVotes', [account ?? undefined, block ?? undefined])
     ?.result?.[0]
-  return votes && uni ? new TokenAmount(uni, votes) : undefined
+  return votes && elt ? new TokenAmount(elt, votes) : undefined
 }
 
 export function useDelegateCallback(): (delegatee: string | undefined) => undefined | Promise<string> {
   const { account, chainId, library } = useActiveWeb3React()
   const addTransaction = useTransactionAdder()
 
-  const uniContract = useUniContract()
+  const eltContract = useEltContract()
 
   return useCallback(
     (delegatee: string | undefined) => {
       if (!library || !chainId || !account || !isAddress(delegatee ?? '')) return undefined
       const args = [delegatee]
-      if (!uniContract) throw new Error('No UNI Contract!')
-      return uniContract.estimateGas.delegate(...args, {}).then(estimatedGasLimit => {
-        return uniContract
+      if (!eltContract) throw new Error('No ELT Contract!')
+      return eltContract.estimateGas.delegate(...args, {}).then(estimatedGasLimit => {
+        return eltContract
           .delegate(...args, { value: null, gasLimit: calculateGasMargin(estimatedGasLimit) })
           .then((response: TransactionResponse) => {
             addTransaction(response, {
@@ -198,7 +198,7 @@ export function useDelegateCallback(): (delegatee: string | undefined) => undefi
           })
       })
     },
-    [account, addTransaction, chainId, library, uniContract]
+    [account, addTransaction, chainId, library, eltContract]
   )
 }
 

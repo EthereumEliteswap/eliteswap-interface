@@ -1,6 +1,6 @@
 {
   "name": "@eliteswap/interface",
-  "description": "Eliteswap Interface",
+  "description": "Elite Swap Interface",
   "homepage": ".",
   "private": true,
   "devDependencies": {

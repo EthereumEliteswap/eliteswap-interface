@@ -12,7 +12,7 @@ import Logo from '../../assets/images/eliteswap_logo.png'
 // import LogoDark from '../../assets/svg/logo_white.svg'
 import { useActiveWeb3React } from '../../hooks'
 import { useDarkModeManager } from '../../state/user/hooks'
-import { useETHBalances, useAggregateUniBalance } from '../../state/wallet/hooks'
+import { useETHBalances, useAggregateEltBalance } from '../../state/wallet/hooks'
 import { CardNoise } from '../earn/styled'
 import { CountUp } from 'use-count-up'
 import { TYPE } from '../../theme'
@@ -29,7 +29,7 @@ import { useUserHasAvailableClaim } from '../../state/claim/hooks'
 import { useUserHasSubmittedClaim } from '../../state/transactions/hooks'
 import { Dots } from '../swap/styleds'
 import Modal from '../Modal'
-import UniBalanceContent from './UniBalanceContent'
+import EltBalanceContent from './EltBalanceContent'
 import usePrevious from '../../hooks/usePrevious'
 
 const HeaderFrame = styled.div`
@@ -129,7 +129,7 @@ const AccountElement = styled.div<{ active: boolean }>`
   } */
 `
 
-const UNIAmount = styled(AccountElement)`
+const EltAmount = styled(AccountElement)`
   color: white;
   padding: 4px 8px;
   height: 36px;
@@ -138,7 +138,7 @@ const UNIAmount = styled(AccountElement)`
   background: radial-gradient(174.47% 188.91% at 1.84% 0%, #ff007a 0%, #2172e5 100%), #edeef2;
 `
 
-const UNIWrapper = styled.span`
+const ELTWrapper = styled.span`
   width: fit-content;
   position: relative;
   cursor: pointer;
@@ -191,7 +191,7 @@ const Title = styled.a`
   }
 `
 
-const UniIcon = styled.div`
+const EltIcon = styled.div`
   transition: transform 0.3s ease;
   :hover {
     transform: rotate(-5deg);
@@ -278,9 +278,9 @@ export default function Header() {
 
   const { claimTxn } = useUserHasSubmittedClaim(account ?? undefined)
 
-  const aggregateBalance: TokenAmount | undefined = useAggregateUniBalance()
+  const aggregateBalance: TokenAmount | undefined = useAggregateEltBalance()
 
-  const [showUniBalanceModal, setShowUniBalanceModal] = useState(false)
+  const [showEltBalanceModal, setShowEltBalanceModal] = useState(false)
   const showClaimPopup = useShowClaimPopup()
 
   const countUpValue = aggregateBalance?.toFixed(0) ?? '0'
@@ -289,8 +289,8 @@ export default function Header() {
   return (
     <HeaderFrame>
       <ClaimModal />
-      <Modal isOpen={showUniBalanceModal} onDismiss={() => setShowUniBalanceModal(false)}>
-        <UniBalanceContent setShowUniBalanceModal={setShowUniBalanceModal} />
+      <Modal isOpen={showEltBalanceModal} onDismiss={() => setShowEltBalanceModal(false)}>
+        <EltBalanceContent setShowEltBalanceModal={setShowEltBalanceModal} />
       </Modal>
       <HeaderRow>
         <Title href=".">
@@ -334,18 +334,18 @@ export default function Header() {
             )}
           </HideSmall>
           {availableClaim && !showClaimPopup && (
-            <UNIWrapper onClick={toggleClaimModal}>
-              <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
+            <ELTWrapper onClick={toggleClaimModal}>
+              <ELTAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
                 <TYPE.white padding="0 2px">
-                  {claimTxn && !claimTxn?.receipt ? <Dots>Claiming UNI</Dots> : 'Claim Elite'}
+                  {claimTxn && !claimTxn?.receipt ? <Dots>Claiming ELT</Dots> : 'Claim ELT'}
                 </TYPE.white>
-              </UNIAmount>
+              </ELTAmount>
               <CardNoise />
-            </UNIWrapper>
+            </ELTWrapper>
           )}
           {!availableClaim && aggregateBalance && (
-            <UNIWrapper onClick={() => setShowUniBalanceModal(true)}>
-              <UNIAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
+            <ELTWrapper onClick={() => setShowEltBalanceModal(true)}>
+              <ELTAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
                 {account && (
                   <HideSmall>
                     <TYPE.white
@@ -364,10 +364,10 @@ export default function Header() {
                     </TYPE.white>
                   </HideSmall>
                 )}
-                Elite
-              </UNIAmount>
+                ELT
+              </ELTAmount>
               <CardNoise />
-            </UNIWrapper>
+            </ELTWrapper>
           )}
           <AccountElement active={!!account} style={{ pointerEvents: 'auto' }}>
             {account && userEthBalance ? (

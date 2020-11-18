@@ -1,9 +1,9 @@
 import { ChainId, JSBI, Token, TokenAmount } from '@eliteswap/sdk'
 import { BigNumber } from 'ethers'
 import { ZERO_ADDRESS } from '../constants'
-import { computeUniCirculation } from './computeUniCirculation'
+import { computeEltCirculation } from './computeEltCirculation'
 
-describe('computeUniCirculation', () => {
+describe('computeEltCirculation', () => {
   const token = new Token(ChainId.RINKEBY, ZERO_ADDRESS, 18)
 
   function expandTo18Decimals(num: JSBI | string | number) {
@@ -15,21 +15,21 @@ describe('computeUniCirculation', () => {
   }
 
   it('before staking', () => {
-    expect(computeUniCirculation(token, BigNumber.from(0), undefined)).toEqual(tokenAmount(150_000_000))
-    expect(computeUniCirculation(token, BigNumber.from(1600387200), undefined)).toEqual(tokenAmount(150_000_000))
+    expect(computeEltCirculation(token, BigNumber.from(0), undefined)).toEqual(tokenAmount(150_000_000))
+    expect(computeEltCirculation(token, BigNumber.from(1600387200), undefined)).toEqual(tokenAmount(150_000_000))
   })
   it('mid staking', () => {
-    expect(computeUniCirculation(token, BigNumber.from(1600387200 + 15 * 24 * 60 * 60), undefined)).toEqual(
+    expect(computeEltCirculation(token, BigNumber.from(1600387200 + 15 * 24 * 60 * 60), undefined)).toEqual(
       tokenAmount(155_000_000)
     )
   })
   it('after staking and treasury vesting cliff', () => {
-    expect(computeUniCirculation(token, BigNumber.from(1600387200 + 60 * 24 * 60 * 60), undefined)).toEqual(
+    expect(computeEltCirculation(token, BigNumber.from(1600387200 + 60 * 24 * 60 * 60), undefined)).toEqual(
       tokenAmount(224_575_341)
     )
   })
-  it('subtracts unclaimed uni', () => {
-    expect(computeUniCirculation(token, BigNumber.from(1600387200 + 15 * 24 * 60 * 60), tokenAmount(1000))).toEqual(
+  it('subtracts unclaimed elt', () => {
+    expect(computeEltCirculation(token, BigNumber.from(1600387200 + 15 * 24 * 60 * 60), tokenAmount(1000))).toEqual(
       tokenAmount(154_999_000)
     )
   })

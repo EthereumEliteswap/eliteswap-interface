@@ -3,15 +3,15 @@ import React, { useMemo } from 'react'
 import { X } from 'react-feather'
 import styled from 'styled-components'
 import tokenLogo from '../../assets/images/token-logo.png'
-import { UNI } from '../../constants'
+import { ELT } from '../../constants'
 import { useTotalSupply } from '../../data/TotalSupply'
 import { useActiveWeb3React } from '../../hooks'
 import { useMerkleDistributorContract } from '../../hooks/useContract'
 import useCurrentBlockTimestamp from '../../hooks/useCurrentBlockTimestamp'
-import { useTotalUniEarned } from '../../state/stake/hooks'
-import { useAggregateUniBalance, useTokenBalance } from '../../state/wallet/hooks'
-import { ExternalLink, StyledInternalLink, TYPE, UniTokenAnimated } from '../../theme'
-import { computeUniCirculation } from '../../utils/computeUniCirculation'
+import { useTotalEltEarned } from '../../state/stake/hooks'
+import { useAggregateEltBalance, useTokenBalance } from '../../state/wallet/hooks'
+import { ExternalLink, StyledInternalLink, TYPE, EltTokenAnimated } from '../../theme'
+import { computeEltCirculation } from '../../utils/computeEltCirculation'
 import useUSDCPrice from '../../utils/useUSDCPrice'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
@@ -40,24 +40,24 @@ const StyledClose = styled(X)`
 /**
  * Content for balance stats modal
  */
-export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowUniBalanceModal: any }) {
+export default function EltBalanceContent({ setShowEltBalanceModal }: { setShowEltBalanceModal: any }) {
   const { account, chainId } = useActiveWeb3React()
-  const uni = chainId ? UNI[chainId] : undefined
+  const elt = chainId ? ELT[chainId] : undefined
 
-  const total = useAggregateUniBalance()
-  const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, uni)
-  const uniToClaim: TokenAmount | undefined = useTotalUniEarned()
+  const total = useAggregateEltBalance()
+  const eltBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, elt)
+  const eltToClaim: TokenAmount | undefined = useTotalEltEarned()
 
-  const totalSupply: TokenAmount | undefined = useTotalSupply(uni)
-  const uniPrice = useUSDCPrice(uni)
+  const totalSupply: TokenAmount | undefined = useTotalSupply(elt)
+  const eltPrice = useUSDCPrice(elt)
   const blockTimestamp = useCurrentBlockTimestamp()
-  const unclaimedUni = useTokenBalance(useMerkleDistributorContract()?.address, uni)
+  const unclaimedElt = useTokenBalance(useMerkleDistributorContract()?.address, elt)
   const circulation: TokenAmount | undefined = useMemo(
     () =>
-      blockTimestamp && uni && chainId === ChainId.MAINNET
-        ? computeUniCirculation(uni, blockTimestamp, unclaimedUni)
+      blockTimestamp && elt && chainId === ChainId.MAINNET
+        ? computeEltCirculation(elt, blockTimestamp, unclaimedElt)
         : totalSupply,
-    [blockTimestamp, chainId, totalSupply, unclaimedUni, uni]
+    [blockTimestamp, chainId, totalSupply, unclaimedElt, elt]
   )
 
   return (
@@ -67,8 +67,8 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
         <CardNoise />
         <CardSection gap="md">
           <RowBetween>
-            <TYPE.white color="white">Your Elite Breakdown</TYPE.white>
-            <StyledClose stroke="white" onClick={() => setShowUniBalanceModal(false)} />
+            <TYPE.white color="white">Your ELT Breakdown</TYPE.white>
+            <StyledClose stroke="white" onClick={() => setShowEltBalanceModal(false)} />
           </RowBetween>
         </CardSection>
         <Break />
@@ -76,7 +76,7 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
           <>
             <CardSection gap="sm">
               <AutoColumn gap="md" justify="center">
-                <UniTokenAnimated width="48px" src={tokenLogo} />{' '}
+                <EltTokenAnimated width="48px" src={tokenLogo} />{' '}
                 <TYPE.white fontSize={48} fontWeight={600} color="white">
                   {total?.toFixed(2, { groupSeparator: ',' })}
                 </TYPE.white>
@@ -84,14 +84,14 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
               <AutoColumn gap="md">
                 <RowBetween>
                   <TYPE.white color="white">Balance:</TYPE.white>
-                  <TYPE.white color="white">{uniBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.white>
+                  <TYPE.white color="white">{eltBalance?.toFixed(2, { groupSeparator: ',' })}</TYPE.white>
                 </RowBetween>
                 <RowBetween>
                   <TYPE.white color="white">Unclaimed:</TYPE.white>
                   <TYPE.white color="white">
-                    {uniToClaim?.toFixed(4, { groupSeparator: ',' })}{' '}
-                    {uniToClaim && uniToClaim.greaterThan('0') && (
-                      <StyledInternalLink onClick={() => setShowUniBalanceModal(false)} to="/uni">
+                    {eltToClaim?.toFixed(4, { groupSeparator: ',' })}{' '}
+                    {eltToClaim && eltToClaim.greaterThan('0') && (
+                      <StyledInternalLink onClick={() => setShowEltBalanceModal(false)} to="/elt">
                         (claim)
                       </StyledInternalLink>
                     )}
@@ -105,19 +105,19 @@ export default function UniBalanceContent({ setShowUniBalanceModal }: { setShowU
         <CardSection gap="sm">
           <AutoColumn gap="md">
             <RowBetween>
-              <TYPE.white color="white">Elite price:</TYPE.white>
-              <TYPE.white color="white">${uniPrice?.toFixed(2) ?? '-'}</TYPE.white>
+              <TYPE.white color="white">ELT price:</TYPE.white>
+              <TYPE.white color="white">${eltPrice?.toFixed(2) ?? '-'}</TYPE.white>
             </RowBetween>
             <RowBetween>
-              <TYPE.white color="white">Elite in circulation:</TYPE.white>
+              <TYPE.white color="white">ELT in circulation:</TYPE.white>
               <TYPE.white color="white">{circulation?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
             </RowBetween>
             <RowBetween>
               <TYPE.white color="white">Total Supply</TYPE.white>
               <TYPE.white color="white">{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
             </RowBetween>
-            {uni && uni.chainId === ChainId.MAINNET ? (
-              <ExternalLink href={`https://uniswap.info/token/${uni.address}`}>View Elite Analytics</ExternalLink>
+            {elt && elt.chainId === ChainId.MAINNET ? (
+              <ExternalLink href={`https://uniswap.info/token/${uni.address}`}>View ELT Analytics</ExternalLink>
             ) : null}
           </AutoColumn>
         </CardSection>

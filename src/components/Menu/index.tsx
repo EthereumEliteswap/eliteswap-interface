@@ -85,7 +85,7 @@ const MenuItem = styled(ExternalLink)`
   }
 `
 
-const CODE_LINK = 'https://github.com/EthereumEliteswap'
+const CODE_LINK = 'https://github.com/EthereumEliteswap/eliteswap-interface'
 
 export default function Menu() {
   // const { account } = useActiveWeb3React()

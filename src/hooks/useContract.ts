@@ -1,11 +1,11 @@
 import { Contract } from '@ethersproject/contracts'
 import { abi as GOVERNANCE_ABI } from '@eliteswap/governance/build/EliteGovernorAlpha.json'
-import { abi as UNI_ABI } from '@eliteswap/governance/build/Elt.json'
+import { abi as ELT_ABI } from '@eliteswap/governance/build/Elt.json'
 import { abi as STAKING_REWARDS_ABI } from '@eliteswap/liquidity-staker/build/EliteStakingRewards.json'
 import { ChainId, WETH } from '@eliteswap/sdk'
 import { abi as IEliteswapV2PairABI } from '@eliteswap/v2-core/build/IEliteswapV2Pair.json'
 import { useMemo } from 'react'
-import { GOVERNANCE_ADDRESS, UNI } from '../constants'
+import { GOVERNANCE_ADDRESS, ELT } from '../constants'
 import {
   ARGENT_WALLET_DETECTOR_ABI,
   ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS
@@ -110,9 +110,9 @@ export function useGovernanceContract(): Contract | null {
   return useContract(GOVERNANCE_ADDRESS, GOVERNANCE_ABI, true)
 }
 
-export function useUniContract(): Contract | null {
+export function useEltContract(): Contract | null {
   const { chainId } = useActiveWeb3React()
-  return useContract(chainId ? UNI[chainId].address : undefined, UNI_ABI, true)
+  return useContract(chainId ? ELT[chainId].address : undefined, ELT_ABI, true)
 }
 
 export function useStakingContract(stakingAddress?: string, withSignerIfPossible?: boolean): Contract | null {
