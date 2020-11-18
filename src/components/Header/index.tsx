@@ -294,9 +294,9 @@ export default function Header() {
       </Modal>
       <HeaderRow>
         <Title href=".">
-          <UniIcon>
+          <EltIcon>
             <img width={'120px'} src={isDark ? Logo: Logo} alt="logo" />
-          </UniIcon>
+          </EltIcon>
         </Title>
         <HeaderLinks>
           <StyledNavLink id={`swap-nav-link`} to={'/swap'}>
