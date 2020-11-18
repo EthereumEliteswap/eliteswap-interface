@@ -116,9 +116,6 @@ export default function EltBalanceContent({ setShowEltBalanceModal }: { setShowE
               <TYPE.white color="white">Total Supply</TYPE.white>
               <TYPE.white color="white">{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
             </RowBetween>
-            {elt && elt.chainId === ChainId.MAINNET ? (
-              <ExternalLink href={`https://uniswap.info/token/${uni.address}`}>View ELT Analytics</ExternalLink>
-            ) : null}
           </AutoColumn>
         </CardSection>
       </ModalUpper>
