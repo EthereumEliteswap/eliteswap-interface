@@ -62,7 +62,7 @@ export default function Earn() {
                 href="https://uniswap.org/blog/uni/"
                 target="_blank"
               >
-                <TYPE.white fontSize={14}>Read more about UNI</TYPE.white>
+                <TYPE.white fontSize={14}>Read more about ELT</TYPE.white>
               </ExternalLink> */}
             </AutoColumn>
           </CardSection>
