@@ -105,14 +105,6 @@ export default function Menu() {
 
       {open && (
         <MenuFlyout>
-          {/* <MenuItem id="link" href="https://uniswap.org/">
-            <Info size={14} />
-            About
-          </MenuItem>
-          <MenuItem id="link" href="https://uniswap.org/docs/v2">
-            <BookOpen size={14} />
-            Docs
-          </MenuItem> */}
           <MenuItem id="link" href={CODE_LINK}>
             <Code size={14} />
             Code

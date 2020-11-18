@@ -57,13 +57,6 @@ export default function Earn() {
                   Deposit your Liquidity Provider tokens to receive ELITE, EliteSwap protocol governance token
                 </TYPE.white>
               </RowBetween>{' '}
-              {/* <ExternalLink
-                style={{ color: 'white', textDecoration: 'underline' }}
-                href="https://uniswap.org/blog/uni/"
-                target="_blank"
-              >
-                <TYPE.white fontSize={14}>Read more about ELT</TYPE.white>
-              </ExternalLink> */}
             </AutoColumn>
           </CardSection>
           <CardBGImage />
