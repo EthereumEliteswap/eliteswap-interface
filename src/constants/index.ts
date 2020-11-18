@@ -30,9 +30,9 @@ export const GOVERNANCE_ADDRESS = '0x1E3776A7Bb9228E997806FA6Faf455B0bd4d77cc'
 export const TIMELOCK_ADDRESS = '0x3Ce6feac2DC11a8799dC2a4B9434c5943E1c69EE'
 
 const UNI_ADDRESS = '0x380291A9A8593B39f123cF39cc1cc47463330b1F'
-export const UNI: { [chainId in ChainId]: Token } = {
+export const UNI: { [chainId in ChainId]: Token } | any = {
   [ChainId.MAINNET]: new Token(ChainId.MAINNET, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
-  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'UNI', 'Uniswap'),
+  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, UNI_ADDRESS, 18, 'UNI', 'Uniswap')
 }
 
 export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {

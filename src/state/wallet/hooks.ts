@@ -1,4 +1,4 @@
-import { UNI } from './../../constants/index'
+import { ELT } from './../../constants/index'
 import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount } from '@eliteswap/sdk'
 import { useMemo } from 'react'
 import ERC20_INTERFACE from '../../constants/abis/erc20'
@@ -8,7 +8,7 @@ import { useMulticallContract } from '../../hooks/useContract'
 import { isAddress } from '../../utils'
 import { useSingleContractMultipleData, useMultipleContractSingleData } from '../multicall/hooks'
 import { useUserUnclaimedAmount } from '../claim/hooks'
-import { useTotalUniEarned } from '../stake/hooks'
+import { useTotalEltEarned } from '../stake/hooks'
 
 /**
  * Returns a map of the given addresses to their eventually consistent ETH balances.
@@ -134,23 +134,23 @@ export function useAllTokenBalances(): { [tokenAddress: string]: TokenAmount | u
   return balances ?? {}
 }
 
-// get the total owned, unclaimed, and unharvested UNI for account
-export function useAggregateUniBalance(): TokenAmount | undefined {
+// get the total owned, unclaimed, and unharvested ELT for account
+export function useAggregateEltBalance(): TokenAmount | undefined {
   const { account, chainId } = useActiveWeb3React()
 
-  const uni = chainId ? UNI[chainId] : undefined
+  const elt = chainId ? ELT[chainId] : undefined
 
-  const uniBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, uni)
-  const uniUnclaimed: TokenAmount | undefined = useUserUnclaimedAmount(account)
-  const uniUnHarvested: TokenAmount | undefined = useTotalUniEarned()
+  const eltBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, elt)
+  const eltUnclaimed: TokenAmount | undefined = useUserUnclaimedAmount(account)
+  const eltUnHarvested: TokenAmount | undefined = useTotalEltEarned()
 
-  if (!uni) return undefined
+  if (!elt) return undefined
 
   return new TokenAmount(
-    uni,
+    elt,
     JSBI.add(
-      JSBI.add(uniBalance?.raw ?? JSBI.BigInt(0), uniUnclaimed?.raw ?? JSBI.BigInt(0)),
-      uniUnHarvested?.raw ?? JSBI.BigInt(0)
+      JSBI.add(eltBalance?.raw ?? JSBI.BigInt(0), eltUnclaimed?.raw ?? JSBI.BigInt(0)),
+      eltUnHarvested?.raw ?? JSBI.BigInt(0)
     )
   )
 }

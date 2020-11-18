@@ -3,9 +3,9 @@ describe('Lists', () => {
     cy.visit('/swap')
   })
 
-  it('defaults to uniswap list', () => {
+  it('defaults to Elite Swap list', () => {
     cy.get('#swap-currency-output .open-currency-select-button').click()
-    cy.get('#currency-search-selected-list-name').should('contain', 'Uniswap')
+    cy.get('#currency-search-selected-list-name').should('contain', 'Elite Swap')
   })
 
   it('change list', () => {
@@ -15,6 +15,6 @@ describe('Lists', () => {
     cy.get('#currency-search-selected-list-name').should('contain', '1inch')
     cy.get('#currency-search-change-list-button').click()
     cy.get('#list-row-tokens-uniswap-eth .select-button').click()
-    cy.get('#currency-search-selected-list-name').should('contain', 'Uniswap')
+    cy.get('#currency-search-selected-list-name').should('contain', 'Elite Swap')
   })
 })
