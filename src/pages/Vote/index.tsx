@@ -149,7 +149,7 @@ export default function Vote() {
                 href="https://uniswap.org/blog/uni"
                 target="_blank"
               >
-                <TYPE.white fontSize={14}>Read more about Uniswap governance</TYPE.white>
+                <TYPE.white fontSize={14}>Read more about Elite Swap governance</TYPE.white>
               </ExternalLink> */}
             </AutoColumn>
           </CardSection>
