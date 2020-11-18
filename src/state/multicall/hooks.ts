@@ -123,7 +123,7 @@ const LOADING_CALL_STATE: CallState = { valid: true, result: undefined, loading:
 
 function toCallState(
   callResult: CallResult | undefined,
-  contractInterface: Interface | undefined | any, 
+  contractInterface: Interface | undefined | any,
   fragment: FunctionFragment | undefined,
   latestBlockNumber: number | undefined
 ): CallState {

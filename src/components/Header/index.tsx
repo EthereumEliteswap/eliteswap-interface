@@ -295,7 +295,7 @@ export default function Header() {
       <HeaderRow>
         <Title href=".">
           <EltIcon>
-            <img width={'120px'} src={isDark ? Logo: Logo} alt="logo" />
+            <img width={'120px'} src={isDark ? Logo : Logo} alt="logo" />
           </EltIcon>
         </Title>
         <HeaderLinks>

@@ -103,7 +103,7 @@ export function useMulticallContract(): Contract | null {
 
 export function useMerkleDistributorContract(): Contract | null {
   // const { chainId } = useActiveWeb3React()
-  return  null
+  return null
 }
 
 export function useGovernanceContract(): Contract | null {
