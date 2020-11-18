@@ -54,7 +54,7 @@ export default function Earn() {
               </RowBetween>
               <RowBetween>
                 <TYPE.white fontSize={14}>
-                  Deposit your Liquidity Provider tokens to receive ELITE, EliteSwap protocol governance token
+                  Deposit your Liquidity Provider tokens to receive ELT, EliteSwap protocol governance token
                 </TYPE.white>
               </RowBetween>{' '}
             </AutoColumn>
