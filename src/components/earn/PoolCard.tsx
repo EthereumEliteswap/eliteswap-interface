@@ -101,7 +101,7 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
           JSBI.BigInt(2) // this is b/c the value of LP shares are ~double the value of the WETH they entitle owner to
         ),
         totalSupplyOfStakingToken.raw
-      )
+      ) || 0
     )
   }
 
