@@ -20,19 +20,19 @@ export const STAKING_REWARDS_INFO: {
   [ChainId.MAINNET]: [
     {
       tokens: [WETH[ChainId.MAINNET], DAI],
-      stakingRewardAddress: '0xa1484C3aa22a66C62b77E0AE78E15258bd0cB711'
+      stakingRewardAddress: '0x6aa11da7ecA4f8f2F66BEFDd11b7C697606d913e'
     },
     {
       tokens: [WETH[ChainId.MAINNET], USDC],
-      stakingRewardAddress: '0x7FBa4B8Dc5E7616e59622806932DBea72537A56b'
+      stakingRewardAddress: '0x1469f6cE0A7F82FF6403730f21714DC083d611a3'
     },
     {
       tokens: [WETH[ChainId.MAINNET], USDT],
-      stakingRewardAddress: '0x6C3e4cb2E96B01F4b866965A91ed4437839A121a'
+      stakingRewardAddress: '0xBF2B5Be71Bc353906618A0BeF413F9c2E33f6dd4'
     },
     {
       tokens: [WETH[ChainId.MAINNET], WBTC],
-      stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
+      stakingRewardAddress: '0xad064270150db970E3a10d0f492CAa87CAE678E1'
     }
   ]
 }
