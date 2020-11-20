@@ -141,7 +141,9 @@ export default function Manage({
   // get the USD value of staked WETH
   const USDPrice = useUSDCPrice(WETH)
   const valueOfTotalStakedAmountInUSDC =
-    valueOfTotalStakedAmountInWETH && USDPrice?.quote(valueOfTotalStakedAmountInWETH)
+    valueOfTotalStakedAmountInWETH && 
+    USDPrice && USDPrice.greaterThan('0') &&
+    USDPrice.quote(valueOfTotalStakedAmountInWETH)
 
   const toggleWalletModal = useWalletModalToggle()
 
