@@ -9,6 +9,7 @@ import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/
 import { Countdown } from './Countdown'
 import Loader from '../../components/Loader'
 import { useActiveWeb3React } from '../../hooks'
+import { OutlineCard } from '../../components/Card'
 
 const PageWrapper = styled(AutoColumn)`
   max-width: 640px;
@@ -29,16 +30,19 @@ const PoolSection = styled.div`
   justify-self: center;
 `
 
+const DataRow = styled(RowBetween)`
+  ${({ theme }) => theme.mediaWidth.upToSmall`
+flex-direction: column;
+`};
+`
+
 export default function Earn() {
   const { chainId } = useActiveWeb3React()
+
+  // staking info for connected account
   const stakingInfos = useStakingInfo()
 
-  const DataRow = styled(RowBetween)`
-    ${({ theme }) => theme.mediaWidth.upToSmall`
-    flex-direction: column;
-  `};
-  `
-
+  // toggle copy if rewards are inactive
   const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)
 
   return (
@@ -74,7 +78,7 @@ export default function Earn() {
           {stakingRewardsExist && stakingInfos?.length === 0 ? (
             <Loader style={{ margin: 'auto' }} />
           ) : !stakingRewardsExist ? (
-            'No active rewards'
+            <OutlineCard>No active pools</OutlineCard>
           ) : (
             stakingInfos?.map(stakingInfo => {
               // need to sort by added liquidity here
