@@ -1,4 +1,4 @@
-import { JSBI, Pair, Percent } from '@eliteswap/sdk'
+import { JSBI, Pair, Percent, TokenAmount } from '@eliteswap/sdk'
 import { darken } from 'polished'
 import React, { useState } from 'react'
 import { ChevronDown, ChevronUp } from 'react-feather'
@@ -9,10 +9,10 @@ import { useTotalSupply } from '../../data/TotalSupply'
 
 import { useActiveWeb3React } from '../../hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
-import { TYPE } from '../../theme'
+import { TYPE, HideExtraSmall, ExtraSmallOnly } from '../../theme'
 import { currencyId } from '../../utils/currencyId'
 import { unwrappedToken } from '../../utils/wrappedCurrency'
-import { ButtonPrimary, ButtonEmpty } from '../Button'
+import { ButtonPrimary, ButtonEmpty, ButtonELTGradient } from '../Button'
 import { transparentize } from 'polished'
 import { CardNoise } from '../earn/styled'
 
@@ -22,8 +22,9 @@ import Card, { GreyCard, LightCard } from '../Card'
 import { AutoColumn } from '../Column'
 import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
-import { RowBetween, RowFixed } from '../Row'
+import { RowBetween, RowFixed, AutoRow } from '../Row'
 import { Dots } from '../swap/styleds'
+import { BIG_INT_ZERO } from '../../constants'
 
 export const FixedHeightRow = styled(RowBetween)`
   height: 24px;
@@ -47,6 +48,7 @@ interface PositionCardProps {
   pair: Pair
   showUnwrapped?: boolean
   border?: string
+  stakedBalance?: TokenAmount // optional balance to indicate that liquidity is deposited in mining pool
 }
 
 export function MinimalPositionCard({ pair, showUnwrapped = false, border }: PositionCardProps) {
@@ -157,7 +159,7 @@ export function MinimalPositionCard({ pair, showUnwrapped = false, border }: Pos
   )
 }
 
-export default function FullPositionCard({ pair, border }: PositionCardProps) {
+export default function FullPositionCard({ pair, border, stakedBalance }: PositionCardProps) {
   const { account } = useActiveWeb3React()
 
   const currency0 = unwrappedToken(pair.token0)
@@ -165,8 +167,11 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
 
   const [showMore, setShowMore] = useState(false)
 
-  const userPoolBalance = useTokenBalance(account ?? undefined, pair.liquidityToken)
+  const userDefaultPoolBalance = useTokenBalance(account ?? undefined, pair.liquidityToken)
   const totalPoolTokens = useTotalSupply(pair.liquidityToken)
+
+  // if staked balance balance provided, add to standard liquidity amount
+  const userPoolBalance = stakedBalance ? userDefaultPoolBalance?.add(stakedBalance) : userDefaultPoolBalance
 
   const poolTokenPercentage =
     !!userPoolBalance && !!totalPoolTokens && JSBI.greaterThanOrEqual(totalPoolTokens.raw, userPoolBalance.raw)
@@ -192,12 +197,22 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
       <CardNoise />
       <AutoColumn gap="12px">
         <FixedHeightRow>
-          <RowFixed>
-            <DoubleCurrencyLogo currency0={currency0} currency1={currency1} margin={true} size={20} />
+          <AutoRow gap="8px">
+            <DoubleCurrencyLogo currency0={currency0} currency1={currency1} size={20} />
             <Text fontWeight={500} fontSize={20}>
               {!currency0 || !currency1 ? <Dots>Loading</Dots> : `${currency0.symbol}/${currency1.symbol}`}
             </Text>
-          </RowFixed>
+            {!!stakedBalance && (
+              <ButtonELTGradient as={Link} to={`/elt/${currencyId(currency0)}/${currencyId(currency1)}`}>
+                <HideExtraSmall>Earning ELT</HideExtraSmall>
+                <ExtraSmallOnly>
+                  <span role="img" aria-label="bolt">
+                    ⚡
+                  </span>
+                </ExtraSmallOnly>
+              </ButtonELTGradient>
+            )}
+          </AutoRow>
 
           <RowFixed gap="8px">
             <ButtonEmpty
@@ -208,7 +223,6 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
             >
               {showMore ? (
                 <>
-                  {' '}
                   Manage
                   <ChevronUp size="20" style={{ marginLeft: '10px' }} />
                 </>
@@ -226,12 +240,22 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
           <AutoColumn gap="8px">
             <FixedHeightRow>
               <Text fontSize={16} fontWeight={500}>
-                Your pool tokens:
+                Your total pool tokens:
               </Text>
               <Text fontSize={16} fontWeight={500}>
                 {userPoolBalance ? userPoolBalance.toSignificant(4) : '-'}
               </Text>
             </FixedHeightRow>
+            {stakedBalance && (
+              <FixedHeightRow>
+                <Text fontSize={16} fontWeight={500}>
+                  Pool tokens in rewards pool:
+                </Text>
+                <Text fontSize={16} fontWeight={500}>
+                  {stakedBalance.toSignificant(4)}
+                </Text>
+              </FixedHeightRow>
+            )}
             <FixedHeightRow>
               <RowFixed>
                 <Text fontSize={16} fontWeight={500}>
@@ -273,30 +297,45 @@ export default function FullPositionCard({ pair, border }: PositionCardProps) {
                 Your pool share:
               </Text>
               <Text fontSize={16} fontWeight={500}>
-                {poolTokenPercentage ? poolTokenPercentage.toFixed(2) + '%' : '-'}
+                {poolTokenPercentage
+                  ? (poolTokenPercentage.toFixed(2) === '0.00' ? '<0.01' : poolTokenPercentage.toFixed(2)) + '%'
+                  : '-'}
               </Text>
             </FixedHeightRow>
 
-            <RowBetween marginTop="10px">
+            {userDefaultPoolBalance && JSBI.greaterThan(userDefaultPoolBalance.raw, BIG_INT_ZERO) && (
+              <RowBetween marginTop="10px">
+                <ButtonPrimary
+                  padding="8px"
+                  borderRadius="8px"
+                  as={Link}
+                  to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
+                  width="48%"
+                >
+                  Add
+                </ButtonPrimary>
+                <ButtonPrimary
+                  padding="8px"
+                  borderRadius="8px"
+                  as={Link}
+                  width="48%"
+                  to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
+                >
+                  Remove
+                </ButtonPrimary>
+              </RowBetween>
+            )}
+            {stakedBalance && JSBI.greaterThan(stakedBalance.raw, BIG_INT_ZERO) && (
               <ButtonPrimary
                 padding="8px"
                 borderRadius="8px"
                 as={Link}
-                to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}
-                width="48%"
+                to={`/elt/${currencyId(currency0)}/${currencyId(currency1)}`}
+                width="100%"
               >
-                Add
+                Manage Liquidity in Rewards Pool
               </ButtonPrimary>
-              <ButtonPrimary
-                padding="8px"
-                borderRadius="8px"
-                as={Link}
-                width="48%"
-                to={`/remove/${currencyId(currency0)}/${currencyId(currency1)}`}
-              >
-                Remove
-              </ButtonPrimary>
-            </RowBetween>
+            )}
           </AutoColumn>
         )}
       </AutoColumn>
