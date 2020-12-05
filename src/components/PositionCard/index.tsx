@@ -9,10 +9,10 @@ import { useTotalSupply } from '../../data/TotalSupply'
 
 import { useActiveWeb3React } from '../../hooks'
 import { useTokenBalance } from '../../state/wallet/hooks'
-import { TYPE, HideExtraSmall, ExtraSmallOnly } from '../../theme'
+import { ExternalLink, TYPE, HideExtraSmall, ExtraSmallOnly } from '../../theme'
 import { currencyId } from '../../utils/currencyId'
 import { unwrappedToken } from '../../utils/wrappedCurrency'
-import { ButtonPrimary, ButtonEmpty, ButtonELTGradient } from '../Button'
+import { ButtonPrimary, ButtonSecondary, ButtonEmpty, ButtonELTGradient } from '../Button'
 import { transparentize } from 'polished'
 import { CardNoise } from '../earn/styled'
 
@@ -303,6 +303,14 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
               </Text>
             </FixedHeightRow>
 
+            <ButtonSecondary padding="8px" borderRadius="8px">
+              <ExternalLink
+                style={{ width: '100%', textAlign: 'center' }}
+                href={`https://eliteswap.io/info/account/${account}`}
+              >
+                View accrued fees and analytics<span style={{ fontSize: '11px' }}>↗</span>
+              </ExternalLink>
+            </ButtonSecondary>
             {userDefaultPoolBalance && JSBI.greaterThan(userDefaultPoolBalance.raw, BIG_INT_ZERO) && (
               <RowBetween marginTop="10px">
                 <ButtonPrimary

@@ -6,7 +6,7 @@ import { SwapPoolTabs } from '../../components/NavigationTabs'
 
 import FullPositionCard from '../../components/PositionCard'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
-import { StyledInternalLink, TYPE, HideSmall } from '../../theme'
+import { StyledInternalLink, ExternalLink, TYPE, HideSmall } from '../../theme'
 import { Text } from 'rebass'
 import Card from '../../components/Card'
 import { RowBetween, RowFixed } from '../../components/Row'
@@ -177,6 +177,14 @@ export default function Pool() {
               </EmptyProposals>
             ) : allV2PairsWithLiquidity?.length > 0 || stakingPairs?.length > 0 ? (
               <>
+                <ButtonSecondary>
+                  <RowBetween>
+                    <ExternalLink href={'https://eliteswap.io/info/account/' + account}>
+                      Account analytics and accrued fees
+                    </ExternalLink>
+                    <span> ↗</span>
+                  </RowBetween>
+                </ButtonSecondary>
                 {v2PairsWithoutStakedAmount.map(v2Pair => (
                   <FullPositionCard key={v2Pair.liquidityToken.address} pair={v2Pair} />
                 ))}
