@@ -10,7 +10,7 @@ An open source interface for Elite Swap -- a protocol for decentralized exchange
 - Discord: [Elite Swap](https://discord.gg/yFsjhuQ7Kj)
 - Telegram: [Elite Swap](https://telegram.org/@EliteSwap)
 - Twitter: [@EliteSwap2020](https://twitter.com/EliteSwap2020?s=09)
-- Whitepaper: [Link](https://hackmd.io/C-DvwDSfSxuh-Gd4WKE_ig)
+- Whitepaper: [Link](https://uniswap.org/whitepaper.pdf)
 
 ## Accessing Elite Swap Interface
 
