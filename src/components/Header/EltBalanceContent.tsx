@@ -10,7 +10,7 @@ import { useMerkleDistributorContract } from '../../hooks/useContract'
 import useCurrentBlockTimestamp from '../../hooks/useCurrentBlockTimestamp'
 import { useTotalEltEarned } from '../../state/stake/hooks'
 import { useAggregateEltBalance, useTokenBalance } from '../../state/wallet/hooks'
-import { StyledInternalLink, TYPE, EltTokenAnimated } from '../../theme'
+import { ExternalLink, StyledInternalLink, TYPE, EltTokenAnimated } from '../../theme'
 import { computeEltCirculation } from '../../utils/computeEltCirculation'
 import useUSDCPrice from '../../utils/useUSDCPrice'
 import { AutoColumn } from '../Column'
@@ -116,6 +116,9 @@ export default function EltBalanceContent({ setShowEltBalanceModal }: { setShowE
               <TYPE.white color="white">Total Supply</TYPE.white>
               <TYPE.white color="white">{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
             </RowBetween>
+            {elt && elt.chainId === ChainId.MAINNET ? (
+              <ExternalLink href={`https://eliteswap.io/info/token/${elt.address}`}>View ELT Analytics</ExternalLink>
+            ) : null}
           </AutoColumn>
         </CardSection>
       </ModalUpper>
