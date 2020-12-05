@@ -6,6 +6,7 @@
   "devDependencies": {
     "@eliteswap/governance": "^1.0.2",
     "@eliteswap/liquidity-staker": "^1.0.2",
+    "@eliteswap/eliteswap-merkle-distributor": "^1.0.1",
     "@eliteswap/sdk": "^3.0.5",
     "@eliteswap/token-lists": "^1.0.0",
     "@eliteswap/v2-periphery": "^1.1.1",
