@@ -2,10 +2,11 @@ import { Contract } from '@ethersproject/contracts'
 import { abi as GOVERNANCE_ABI } from '@eliteswap/governance/build/EliteGovernorAlpha.json'
 import { abi as ELT_ABI } from '@eliteswap/governance/build/Elt.json'
 import { abi as STAKING_REWARDS_ABI } from '@eliteswap/liquidity-staker/build/EliteStakingRewards.json'
+import { abi as MERKLE_DISTRIBUTOR_ABI } from '@eliteswap/eliteswap-merkle-distributor/build/EliteMerkleDistributor.json'
 import { ChainId, WETH } from '@eliteswap/sdk'
 import { abi as IEliteswapV2PairABI } from '@eliteswap/v2-core/build/IEliteswapV2Pair.json'
 import { useMemo } from 'react'
-import { GOVERNANCE_ADDRESS, ELT } from '../constants'
+import { GOVERNANCE_ADDRESS, MERKLE_DISTRIBUTOR_ADDRESS, ELT } from '../constants'
 import {
   ARGENT_WALLET_DETECTOR_ABI,
   ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS
@@ -86,8 +87,8 @@ export function useMulticallContract(): Contract | null {
 }
 
 export function useMerkleDistributorContract(): Contract | null {
-  // const { chainId } = useActiveWeb3React()
-  return null
+  const { chainId } = useActiveWeb3React()
+  return useContract(chainId ? MERKLE_DISTRIBUTOR_ADDRESS[chainId] : undefined, MERKLE_DISTRIBUTOR_ABI, true)
 }
 
 export function useGovernanceContract(): Contract | null {
