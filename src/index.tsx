@@ -15,6 +15,11 @@ import ListsUpdater from './state/lists/updater'
 import MulticallUpdater from './state/multicall/updater'
 import TransactionUpdater from './state/transactions/updater'
 import UserUpdater from './state/user/updater'
+import UniswapApplicationUpdater from './state/uniswapapplication/updater'
+import UniswapListsUpdater from './state/uniswaplists/updater'
+import UniswapMulticallUpdater from './state/uniswapmulticall/updater'
+import UniswapTransactionUpdater from './state/uniswaptransactions/updater'
+import UniswapUserUpdater from './state/uniswapuser/updater'
 import ThemeProvider, { FixedGlobalStyle, ThemedGlobalStyle } from './theme'
 import getLibrary from './utils/getLibrary'
 
@@ -45,10 +50,15 @@ function Updaters() {
   return (
     <>
       <ListsUpdater />
+      <UniswapListsUpdater />
       <UserUpdater />
+      <UniswapUserUpdater />
       <ApplicationUpdater />
+      <UniswapApplicationUpdater />
       <TransactionUpdater />
+      <UniswapTransactionUpdater />
       <MulticallUpdater />
+      <UniswapMulticallUpdater />
     </>
   )
 }
