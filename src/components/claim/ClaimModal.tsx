@@ -42,8 +42,8 @@ const ConfirmedIcon = styled(ColumnCenter)`
   padding: 60px 0;
 `
 
-const SOCKS_AMOUNT = 1000
-const USER_AMOUNT = 400
+const SOCKS_AMOUNT = 0
+const USER_AMOUNT = 20000
 
 export default function ClaimModal() {
   const isOpen = useModalOpen(ApplicationModal.SELF_CLAIM)
