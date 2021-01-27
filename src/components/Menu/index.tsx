@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { Code, MessageCircle, PieChart, Twitter } from 'react-feather'
+import { Code, MessageCircle, PieChart, Twitter, Send, AlertCircle } from 'react-feather'
 import styled from 'styled-components'
 import { ReactComponent as MenuIcon } from '../../assets/images/menu.svg'
 import { useActiveWeb3React } from '../../hooks'
@@ -114,7 +114,7 @@ export default function Menu() {
             Discord
           </MenuItem>
           <MenuItem id="link" href="https://telegram.org/@EliteSwap">
-            <PieChart size={14} />
+            <Send size={14} />
             Telegram
           </MenuItem>
           <MenuItem id="link" href="https://twitter.com/EliteSwap2020?s=09">
@@ -126,7 +126,7 @@ export default function Menu() {
             Analytics
           </MenuItem>
           <MenuItem id="link" href="https://eliteswap.io/blog">
-            <PieChart size={14} />
+            <AlertCircle size={14} />
             Blog
           </MenuItem>
           {account && (
