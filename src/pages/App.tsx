@@ -24,7 +24,9 @@ import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import Swap from './Swap'
-import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
+import ELTSwap from './ELTSwap'
+import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
+import { OpenClaimAddressModalAndRedirectToELTSwap, RedirectToELTSwap } from './ELTSwap/redirects'
 
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
@@ -88,8 +90,10 @@ export default function App() {
           <Web3ReactManager>
             <Switch>
               <Route exact strict path="/swap" component={Swap} />
-              <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
+              <Route exact strict path="/eltswap" component={ELTSwap} />
+              <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToELTSwap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
+              <Route exact strict path="/eltswap/:outputCurrency" component={RedirectToELTSwap} />
               <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
               <Route exact strict path="/find" component={PoolFinder} />
               <Route exact strict path="/pool" component={Pool} />
