@@ -1,46 +1,45 @@
-import { CurrencyAmount, JSBI, Token, Trade } from '@eliteswap/sdk'
+import { CurrencyAmount, JSBI, Token, Trade } from '@uniswap/sdk'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ArrowDown } from 'react-feather'
 import ReactGA from 'react-ga'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
-import AddressInputPanel from '../../components/AddressInputPanel'
+import UniswapAddressInputPanel from '../../components/UniswapAddressInputPanel'
 import { ButtonError, ButtonLight, ButtonPrimary, ButtonConfirmed } from '../../components/Button'
 import Card, { GreyCard } from '../../components/Card'
 import Column, { AutoColumn } from '../../components/Column'
-import ConfirmSwapModal from '../../components/swap/ConfirmSwapModal'
-import CurrencyInputPanel from '../../components/CurrencyInputPanel'
+import ConfirmSwapModal from '../../components/uniswap/ConfirmSwapModal'
+import UniswapCurrencyInputPanel from '../../components/UniswapCurrencyInputPanel'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
 import { AutoRow, RowBetween } from '../../components/Row'
-import AdvancedSwapDetailsDropdown from '../../components/swap/AdvancedSwapDetailsDropdown'
-import BetterTradeLink, { DefaultVersionLink } from '../../components/swap/BetterTradeLink'
-import confirmPriceImpactWithoutFee from '../../components/swap/confirmPriceImpactWithoutFee'
-import { ArrowWrapper, BottomGrouping, SwapCallbackError, Wrapper } from '../../components/swap/styleds'
-import TradePrice from '../../components/swap/TradePrice'
-import TokenWarningModal from '../../components/TokenWarningModal'
+import AdvancedSwapDetailsDropdown from '../../components/uniswap/AdvancedSwapDetailsDropdown'
+import BetterTradeLink, { DefaultVersionLink } from '../../components/uniswap/BetterTradeLink'
+import confirmPriceImpactWithoutFee from '../../components/uniswap/confirmPriceImpactWithoutFee'
+import { ArrowWrapper, BottomGrouping, SwapCallbackError, Wrapper } from '../../components/uniswap/styleds'
+import TradePrice from '../../components/uniswap/TradePrice'
+import UniswapTokenWarningModal from '../../components/UniswapTokenWarningModal'
 import ProgressSteps from '../../components/ProgressSteps'
 
-import { INITIAL_ALLOWED_SLIPPAGE } from '../../constants'
-import { getTradeVersion } from '../../data/V1'
-import { useActiveWeb3React } from '../../hooks'
-import { useCurrency } from '../../hooks/Tokens'
-import { ApprovalState, useApproveCallbackFromTrade } from '../../hooks/useApproveCallback'
-import useENSAddress from '../../hooks/useENSAddress'
-import { useSwapCallback } from '../../hooks/useSwapCallback'
+import { INITIAL_ALLOWED_SLIPPAGE } from '../../constants/uniswap'
+import { useActiveWeb3React } from '../../hooks/uniswap/index'
+import { useUniswapCurrency } from '../../hooks/uniswap/Tokens'
+import { UniswapApprovalState, useUniswapApproveCallbackFromTrade } from '../../hooks/uniswap/useApproveCallback'
+import useUniswapENSAddress from '../../hooks/uniswap/useENSAddress'
+import { useSwapCallback } from '../../hooks/uniswap/useSwapCallback'
 import useToggledVersion, { DEFAULT_VERSION, Version } from '../../hooks/useToggledVersion'
-import useWrapCallback, { WrapType } from '../../hooks/useWrapCallback'
-import { useToggleSettingsMenu, useWalletModalToggle } from '../../state/application/hooks'
-import { Field } from '../../state/swap/actions'
+import useUniswapWrapCallback, { UniswapWrapType } from '../../hooks/uniswap/useWrapCallback'
+import { useToggleSettingsMenu, useWalletModalToggle } from '../../state/uniswapapplication/hooks'
+import { Field } from '../../state/uniswap/actions'
 import {
   useDefaultsFromURLSearch,
   useDerivedSwapInfo,
   useSwapActionHandlers,
   useSwapState
-} from '../../state/swap/hooks'
-import { useExpertModeManager, useUserSlippageTolerance } from '../../state/user/hooks'
+} from '../../state/uniswap/hooks'
+import { useExpertModeManager, useUserSlippageTolerance } from '../../state/uniswapuser/hooks'
 import { LinkStyledButton, TYPE } from '../../theme'
-import { maxAmountSpend } from '../../utils/maxAmountSpend'
-import { computeTradePriceBreakdown, warningSeverity } from '../../utils/prices'
+import { maxAmountSpend } from '../../utils/uniswap/maxAmountSpend'
+import { computeTradePriceBreakdown, warningSeverity } from '../../utils/uniswap/prices'
 import AppBody from '../AppBody'
 import { ClickableText } from '../Pool/styleds'
 import Loader from '../../components/Loader'
@@ -50,8 +49,8 @@ export default function Swap() {
 
   // token warning stuff
   const [loadedInputCurrency, loadedOutputCurrency] = [
-    useCurrency(loadedUrlParams?.inputCurrencyId),
-    useCurrency(loadedUrlParams?.outputCurrencyId)
+    useUniswapCurrency(loadedUrlParams?.inputCurrencyId),
+    useUniswapCurrency(loadedUrlParams?.outputCurrencyId)
   ]
   const [dismissTokenWarning, setDismissTokenWarning] = useState<boolean>(false)
   const urlLoadedTokens: Token[] = useMemo(
@@ -84,13 +83,13 @@ export default function Swap() {
     currencies,
     inputError: swapInputError
   } = useDerivedSwapInfo()
-  const { wrapType, execute: onWrap, inputError: wrapInputError } = useWrapCallback(
+  const { wrapType, execute: onWrap, inputError: wrapInputError } = useUniswapWrapCallback(
     currencies[Field.INPUT],
     currencies[Field.OUTPUT],
     typedValue
   )
-  const showWrap: boolean = wrapType !== WrapType.NOT_APPLICABLE
-  const { address: recipientAddress } = useENSAddress(recipient)
+  const showWrap: boolean = wrapType !== UniswapWrapType.NOT_APPLICABLE
+  const { address: recipientAddress } = useUniswapENSAddress(recipient)
   const toggledVersion = useToggledVersion()
   const tradesByVersion = {
     [Version.v2]: v2Trade
@@ -156,14 +155,14 @@ export default function Swap() {
   const noRoute = !route
 
   // check whether the user has approved the router on the input token
-  const [approval, approveCallback] = useApproveCallbackFromTrade(trade, allowedSlippage)
+  const [approval, approveCallback] = useUniswapApproveCallbackFromTrade(trade, allowedSlippage)
 
   // check if user has gone through approval process, used to show two step buttons, reset on token change
   const [approvalSubmitted, setApprovalSubmitted] = useState<boolean>(false)
 
   // mark when a user has submitted an approval, reset onTokenSelection for input field
   useEffect(() => {
-    if (approval === ApprovalState.PENDING) {
+    if (approval === UniswapApprovalState.PENDING) {
       setApprovalSubmitted(true)
     }
   }, [approval, approvalSubmitted])
@@ -199,7 +198,7 @@ export default function Swap() {
           label: [
             trade?.inputAmount?.currency?.symbol,
             trade?.outputAmount?.currency?.symbol,
-            getTradeVersion(trade)
+            Version.v2
           ].join('/')
         })
       })
@@ -224,9 +223,9 @@ export default function Swap() {
   // never show if price impact is above threshold in non expert mode
   const showApproveFlow =
     !swapInputError &&
-    (approval === ApprovalState.NOT_APPROVED ||
-      approval === ApprovalState.PENDING ||
-      (approvalSubmitted && approval === ApprovalState.APPROVED)) &&
+    (approval === UniswapApprovalState.NOT_APPROVED ||
+      approval === UniswapApprovalState.PENDING ||
+      (approvalSubmitted && approval === UniswapApprovalState.APPROVED)) &&
     !(priceImpactSeverity > 3 && !isExpertMode)
 
   const handleConfirmDismiss = useCallback(() => {
@@ -259,7 +258,7 @@ export default function Swap() {
 
   return (
     <>
-      <TokenWarningModal
+      <UniswapTokenWarningModal
         isOpen={urlLoadedTokens.length > 0 && !dismissTokenWarning}
         tokens={urlLoadedTokens}
         onConfirm={handleConfirmTokenWarning}
@@ -282,7 +281,7 @@ export default function Swap() {
           />
 
           <AutoColumn gap={'md'}>
-            <CurrencyInputPanel
+            <UniswapCurrencyInputPanel
               label={independentField === Field.OUTPUT && !showWrap && trade ? 'From (estimated)' : 'From'}
               value={formattedAmounts[Field.INPUT]}
               showMaxButton={!atMaxAmountInput}
@@ -312,7 +311,7 @@ export default function Swap() {
                 ) : null}
               </AutoRow>
             </AutoColumn>
-            <CurrencyInputPanel
+            <UniswapCurrencyInputPanel
               value={formattedAmounts[Field.OUTPUT]}
               onUserInput={handleTypeOutput}
               label={independentField === Field.INPUT && !showWrap && trade ? 'To (estimated)' : 'To'}
@@ -333,7 +332,7 @@ export default function Swap() {
                     - Remove send
                   </LinkStyledButton>
                 </AutoRow>
-                <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
+                <UniswapAddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
               </>
             ) : null}
 
@@ -372,7 +371,7 @@ export default function Swap() {
             ) : showWrap ? (
               <ButtonPrimary disabled={Boolean(wrapInputError)} onClick={onWrap}>
                 {wrapInputError ??
-                  (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
+                  (wrapType === UniswapWrapType.WRAP ? 'Wrap' : wrapType === UniswapWrapType.UNWRAP ? 'Unwrap' : null)}
               </ButtonPrimary>
             ) : noRoute && userHasSpecifiedInputOutput ? (
               <GreyCard style={{ textAlign: 'center' }}>
@@ -382,16 +381,16 @@ export default function Swap() {
               <RowBetween>
                 <ButtonConfirmed
                   onClick={approveCallback}
-                  disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
+                  disabled={approval !== UniswapApprovalState.NOT_APPROVED || approvalSubmitted}
                   width="48%"
-                  altDisabledStyle={approval === ApprovalState.PENDING} // show solid button while waiting
-                  confirmed={approval === ApprovalState.APPROVED}
+                  altDisabledStyle={approval === UniswapApprovalState.PENDING} // show solid button while waiting
+                  confirmed={approval === UniswapApprovalState.APPROVED}
                 >
-                  {approval === ApprovalState.PENDING ? (
+                  {approval === UniswapApprovalState.PENDING ? (
                     <AutoRow gap="6px" justify="center">
                       Approving <Loader stroke="white" />
                     </AutoRow>
-                  ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
+                  ) : approvalSubmitted && approval === UniswapApprovalState.APPROVED ? (
                     'Approved'
                   ) : (
                     'Approve ' + currencies[Field.INPUT]?.symbol
@@ -414,7 +413,7 @@ export default function Swap() {
                   width="48%"
                   id="swap-button"
                   disabled={
-                    !isValid || approval !== ApprovalState.APPROVED || (priceImpactSeverity > 3 && !isExpertMode)
+                    !isValid || approval !== UniswapApprovalState.APPROVED || (priceImpactSeverity > 3 && !isExpertMode)
                   }
                   error={isValid && priceImpactSeverity > 2}
                 >
@@ -455,7 +454,7 @@ export default function Swap() {
             )}
             {showApproveFlow && (
               <Column style={{ marginTop: '1rem' }}>
-                <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />
+                <ProgressSteps steps={[approval === UniswapApprovalState.APPROVED]} />
               </Column>
             )}
             {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
