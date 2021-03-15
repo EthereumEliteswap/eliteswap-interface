@@ -9,7 +9,7 @@ import { ButtonPrimary } from '../../components/Button'
 
 import { Button } from 'rebass/styled-components'
 import { darken } from 'polished'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
+import { CardSection, DataCard, CardNoise } from '../../components/earn/styled'
 import { useAllProposalData, ProposalData, useUserVotes, useUserDelegatee } from '../../state/governance/hooks'
 import DelegateModal from '../../components/vote/DelegateModal'
 import { useTokenBalance } from '../../state/wallet/hooks'
@@ -131,7 +131,6 @@ export default function Vote() {
       />
       <TopSection gap="md">
         <VoteCard>
-          <CardBGImage />
           <CardNoise />
           <CardSection>
             <AutoColumn gap="md">
@@ -146,7 +145,6 @@ export default function Vote() {
               </RowBetween>
             </AutoColumn>
           </CardSection>
-          <CardBGImage />
           <CardNoise />
         </VoteCard>
       </TopSection>

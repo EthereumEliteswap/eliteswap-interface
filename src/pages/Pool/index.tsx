@@ -17,7 +17,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { usePairs } from '../../data/Reserves'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
 import { Dots } from '../../components/swap/styleds'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
+import { CardSection, DataCard, CardNoise } from '../../components/earn/styled'
 import { useStakingInfo } from '../../state/stake/hooks'
 import { BIG_INT_ZERO } from '../../constants'
 
@@ -125,7 +125,6 @@ export default function Pool() {
       <PageWrapper>
         <SwapPoolTabs active={'pool'} />
         <VoteCard>
-          <CardBGImage />
           <CardNoise />
           <CardSection>
             <AutoColumn gap="md">
@@ -139,7 +138,6 @@ export default function Pool() {
               </RowBetween>
             </AutoColumn>
           </CardSection>
-          <CardBGImage />
           <CardNoise />
         </VoteCard>
 
