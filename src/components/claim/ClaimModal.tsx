@@ -15,7 +15,7 @@ import { getEtherscanLink } from '../../utils'
 import { ButtonPrimary } from '../Button'
 import { AutoColumn, ColumnCenter } from '../Column'
 import Confetti from '../Confetti'
-import { Break, CardBGImage, CardBGImageSmaller, CardNoise, CardSection, DataCard } from '../earn/styled'
+import { Break, CardNoise, CardSection, DataCard } from '../earn/styled'
 
 import Modal from '../Modal'
 import { RowBetween } from '../Row'
@@ -94,7 +94,6 @@ export default function ClaimModal() {
       {!attempting && !claimConfirmed && (
         <ContentWrapper gap="lg">
           <ModalUpper>
-            <CardBGImage />
             <CardNoise />
             <CardSection gap="md">
               <RowBetween>
@@ -155,7 +154,6 @@ export default function ClaimModal() {
       {(attempting || claimConfirmed) && (
         <ConfirmOrLoadingWrapper activeBG={true}>
           <CardNoise />
-          <CardBGImageSmaller desaturate />
           <RowBetween>
             <div />
             <CloseIcon onClick={toggleClaimModal} style={{ zIndex: 99 }} stroke="black" />
@@ -173,7 +171,7 @@ export default function ClaimModal() {
                 {claimConfirmed ? 'Claimed!' : 'Claiming'}
               </TYPE.largeHeader>
               {!claimConfirmed && (
-                <Text fontSize={36} color={'#ff007a'} fontWeight={800}>
+                <Text fontSize={36} color={'#F65900'} fontWeight={800}>
                   {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} ELT
                 </Text>
               )}

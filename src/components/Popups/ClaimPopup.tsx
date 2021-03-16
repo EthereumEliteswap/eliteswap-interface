@@ -16,7 +16,7 @@ import {
 import { useUserHasAvailableClaim, useUserUnclaimedAmount } from '../../state/claim/hooks'
 import { TYPE } from '../../theme'
 import { AutoColumn } from '../Column'
-import { CardBGImage, CardNoise } from '../earn/styled'
+import { CardNoise } from '../earn/styled'
 
 const StyledClaimPopup = styled(AutoColumn)`
   background: radial-gradient(76.02% 75.41% at 1.84% 0%, rgba(238, 104, 46, 0.2) 0%, #021d43 100%);
@@ -80,7 +80,6 @@ export default function ClaimPopup() {
     <>
       {showClaimPopup && !showClaimModal && (
         <StyledClaimPopup gap="md">
-          <CardBGImage />
           <CardNoise />
           <StyledClose stroke="white" onClick={toggleShowClaimPopup} />
           <AutoColumn style={{ padding: '2rem 0', zIndex: 10 }} justify="center">

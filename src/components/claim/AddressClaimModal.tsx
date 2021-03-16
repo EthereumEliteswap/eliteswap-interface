@@ -15,7 +15,7 @@ import useENS from '../../hooks/useENS'
 import { useActiveWeb3React } from '../../hooks'
 import { isAddress } from 'ethers/lib/utils'
 import Confetti from '../Confetti'
-import { CardNoise, CardBGImage, CardBGImageSmaller } from '../earn/styled'
+import { CardNoise } from '../earn/styled'
 import { useIsTransactionPending } from '../../state/transactions/hooks'
 import { TokenAmount } from '@eliteswap/sdk'
 import { getEtherscanLink, shortenAddress } from '../../utils'
@@ -98,7 +98,6 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
       {!attempting && (
         <ContentWrapper gap="lg">
           <ModalUpper>
-            <CardBGImage />
             <CardNoise />
             <CardSection gap="md">
               <RowBetween>
@@ -136,7 +135,6 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
       {(attempting || claimConfirmed) && (
         <ConfirmOrLoadingWrapper activeBG={true}>
           <CardNoise />
-          <CardBGImageSmaller desaturate />
           <RowBetween>
             <div />
             <CloseIcon onClick={wrappedOnDismiss} style={{ zIndex: 99 }} stroke="black" />
@@ -154,7 +152,7 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
                 {claimConfirmed ? 'Claimed' : 'Claiming'}
               </TYPE.largeHeader>
               {!claimConfirmed && (
-                <Text fontSize={36} color={'#ff007a'} fontWeight={800}>
+                <Text fontSize={36} color={'#F65900'} fontWeight={800}>
                   {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} ELT
                 </Text>
               )}
