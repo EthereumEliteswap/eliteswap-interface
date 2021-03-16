@@ -15,7 +15,7 @@ import { computeEltCirculation } from '../../utils/computeEltCirculation'
 import useUSDCPrice from '../../utils/useUSDCPrice'
 import { AutoColumn } from '../Column'
 import { RowBetween } from '../Row'
-import { Break, CardBGImage, CardNoise, CardSection, DataCard } from '../earn/styled'
+import { Break, CardNoise, CardSection, DataCard } from '../earn/styled'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -63,7 +63,6 @@ export default function EltBalanceContent({ setShowEltBalanceModal }: { setShowE
   return (
     <ContentWrapper gap="lg">
       <ModalUpper>
-        <CardBGImage />
         <CardNoise />
         <CardSection gap="md">
           <RowBetween>

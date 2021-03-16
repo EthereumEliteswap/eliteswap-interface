@@ -50,12 +50,12 @@ export function colors(darkMode: boolean): Colors {
     // backgrounds / greys
     bg1: darkMode ? '#313139' : '#FFFFFF',
     bg2: darkMode ? '#191A1F' : '#F7F8FA',
-    bg3: darkMode ? 'rgba(246,89,0,0.2)' : '#EDEEF2',
+    bg3: darkMode ? '#40444F' : '#EDEEF2',
     bg4: darkMode ? '#565A69' : '#CED0D9',
     bg5: darkMode ? '#6C7284' : '#888D9B',
 
     // background-image radial-gradient 
-    bgi1: darkMode ? '#EE682E' : '#ff007a',
+    bgi1: '#EE682E',
     bgi2: darkMode ? '#1371FA' : '#FFFFFF',
     
     //specialty colors
@@ -63,22 +63,22 @@ export function colors(darkMode: boolean): Colors {
     advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
 
     //primary colors
-    primary1: darkMode ? '#F65900' : '#ff007a',
-    primary2: darkMode ? 'rgba(246,89,0,0.2)' : '#FF8CC3',
-    primary3: darkMode ? 'rgba(246,89,0,0.18)' : '#FF99C9',
-    primary4: darkMode ? 'rgba(246,89,0,0.16)' : '#F6DDE8',
-    primary5: darkMode ? 'rgba(246,89,0,0.14)' : '#FDEAF1',
+    primary1: '#F65900',
+    primary2: 'rgba(246,89,0,0.2)',
+    primary3: 'rgba(246,89,0,0.18)',
+    primary4: 'rgba(246,89,0,0.16)',
+    primary5: 'rgba(246,89,0,0.14)',
     
     // color text
-    primaryText1: darkMode ? '#FFFFFF' : '#ff007a',
+    primaryText1: '#F65900',
 
     // secondary colors
-    secondary1: darkMode ? '#F65900' : '#ff007a',
-    secondary2: darkMode ? '#17000b26' : '#F6DDE8',
-    secondary3: darkMode ? '#17000b26' : '#FDEAF1',
+    secondary1: '#F65900',
+    secondary2: darkMode ? '#17000b26' : 'rgba(246,89,0,0.16)',
+    secondary3: darkMode ? '#17000b26' : 'rgba(246,89,0,0.14)',
 
     // other
-    red1: '#FF6871',
+    red1: '#F9000F',
     red2: '#F82D3A',
     green1: '#27AE60',
     yellow1: '#FFE270',

@@ -11,7 +11,7 @@ import { useWalletModalToggle } from '../../state/application/hooks'
 import { TYPE } from '../../theme'
 
 import { RowBetween } from '../../components/Row'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
+import { CardSection, DataCard, CardNoise } from '../../components/earn/styled'
 import { ButtonPrimary, ButtonEmpty } from '../../components/Button'
 import StakingModal from '../../components/earn/StakingModal'
 import { useStakingInfo } from '../../state/stake/hooks'
@@ -192,7 +192,6 @@ export default function Manage({
 
       {showAddLiquidityButton && (
         <VoteCard>
-          <CardBGImage />
           <CardNoise />
           <CardSection>
             <AutoColumn gap="md">
@@ -215,7 +214,6 @@ export default function Manage({
               </ButtonPrimary>
             </AutoColumn>
           </CardSection>
-          <CardBGImage />
           <CardNoise />
         </VoteCard>
       )}
@@ -245,7 +243,6 @@ export default function Manage({
         <BottomSection gap="lg" justify="center">
           <StyledDataCard disabled={disableTop} bgColor={backgroundColor} showBackground={!showAddLiquidityButton}>
             <CardSection>
-              <CardBGImage desaturate />
               <CardNoise />
               <AutoColumn gap="md">
                 <RowBetween>
@@ -263,7 +260,6 @@ export default function Manage({
             </CardSection>
           </StyledDataCard>
           <StyledBottomCard dim={stakingInfo?.stakedAmount?.equalTo(JSBI.BigInt(0))}>
-            <CardBGImage desaturate />
             <CardNoise />
             <AutoColumn gap="sm">
               <RowBetween>
