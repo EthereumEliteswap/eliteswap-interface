@@ -239,6 +239,7 @@ export default function WalletModal({
         // don't show injected if there's no injected provider
         if (!(window.web3 || window.ethereum)) {
           if (option.name === 'MetaMask') {
+            console.log(key)
             return (
               <Option
                 id={`connect-${key}`}
