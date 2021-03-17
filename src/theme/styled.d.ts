@@ -26,7 +26,7 @@ export interface Colors {
   modalBG: Color
   advancedBG: Color
 
-  //blues
+  // oranges
   primary1: Color
   primary2: Color
   primary3: Color
@@ -35,7 +35,6 @@ export interface Colors {
 
   primaryText1: Color
 
-  // pinks
   secondary1: Color
   secondary2: Color
   secondary3: Color
