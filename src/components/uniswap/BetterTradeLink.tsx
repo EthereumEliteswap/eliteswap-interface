@@ -9,13 +9,7 @@ function VersionLinkContainer({ children }: { children: React.ReactNode }) {
   const theme = useContext(ThemeContext)
 
   return (
-    <YellowCard
-      style={{
-        marginTop: '12px',
-        //  padding: '0.5rem 0.5rem',
-        padding: '0 0'
-      }}
-    >
+    <YellowCard style={{ marginTop: '12px', padding: '0 0' }}>
       <AutoColumn gap="sm" justify="center" style={{ alignItems: 'center', textAlign: 'center' }}>
         <Text lineHeight="145.23%;" fontSize={14} fontWeight={400} color={theme.text1}>
           {children}

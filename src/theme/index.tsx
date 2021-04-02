@@ -54,10 +54,10 @@ export function colors(darkMode: boolean): Colors {
     bg4: darkMode ? '#565A69' : '#CED0D9',
     bg5: darkMode ? '#6C7284' : '#888D9B',
 
-    // background-image radial-gradient 
+    // background-image radial-gradient
     bgi1: '#EE682E',
     bgi2: darkMode ? '#1371FA' : '#FFFFFF',
-    
+
     //specialty colors
     modalBG: darkMode ? 'rgba(0,0,0,.425)' : 'rgba(0,0,0,0.3)',
     advancedBG: darkMode ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.6)',
@@ -68,7 +68,7 @@ export function colors(darkMode: boolean): Colors {
     primary3: 'rgba(246,89,0,0.18)',
     primary4: 'rgba(246,89,0,0.16)',
     primary5: 'rgba(246,89,0,0.14)',
-    
+
     // color text
     primaryText1: '#F65900',
 
