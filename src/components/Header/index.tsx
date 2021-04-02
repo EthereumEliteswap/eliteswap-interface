@@ -298,7 +298,7 @@ export default function Header() {
             {t('swap')}
           </StyledNavLink>
           <StyledNavLink id={`swap-nav-link`} to={'/eltswap'}>
-            ELT Swap
+            {t('eltSwap')}
           </StyledNavLink>
           <StyledNavLink
             id={`pool-nav-link`}
