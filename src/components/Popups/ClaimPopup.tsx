@@ -1,3 +1,4 @@
+/*
 import { TokenAmount } from '@eliteswap/sdk'
 import React, { useEffect } from 'react'
 import { X } from 'react-feather'
@@ -110,3 +111,4 @@ export default function ClaimPopup() {
     </>
   )
 }
+*/

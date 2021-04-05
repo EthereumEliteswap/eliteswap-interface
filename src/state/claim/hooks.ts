@@ -1,3 +1,4 @@
+/*
 import { ELT } from './../../constants/index'
 import { TokenAmount, JSBI, ChainId } from '@eliteswap/sdk'
 import { TransactionResponse } from '@ethersproject/providers'
@@ -88,6 +89,7 @@ export function useUserUnclaimedAmount(account: string | null | undefined): Toke
   return new TokenAmount(elt, JSBI.BigInt(userClaimData.amount))
 }
 
+
 export function useClaimCallback(
   account: string | null | undefined
 ): {
@@ -122,3 +124,4 @@ export function useClaimCallback(
 
   return { claimCallback }
 }
+*/

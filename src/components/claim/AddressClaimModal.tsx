@@ -1,3 +1,4 @@
+/*
 import React, { useState } from 'react'
 import Modal from '../Modal'
 import { AutoColumn, ColumnCenter } from '../Column'
@@ -189,3 +190,4 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
     </Modal>
   )
 }
+*/
