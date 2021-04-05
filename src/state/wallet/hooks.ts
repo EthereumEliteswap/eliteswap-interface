@@ -141,7 +141,7 @@ export function useAggregateEltBalance(): TokenAmount | undefined {
   const elt = chainId ? ELT[chainId] : undefined
 
   const eltBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, elt)
-  const eltUnclaimed: TokenAmount | undefined = 0 // useUserUnclaimedAmount(account)
+//  const eltUnclaimed: TokenAmount | undefined = useUserUnclaimedAmount(account)
   const eltUnHarvested: TokenAmount | undefined = useTotalEltEarned()
 
   if (!elt) return undefined
@@ -149,7 +149,7 @@ export function useAggregateEltBalance(): TokenAmount | undefined {
   return new TokenAmount(
     elt,
     JSBI.add(
-      JSBI.add(eltBalance?.raw ?? JSBI.BigInt(0), eltUnclaimed?.raw ?? JSBI.BigInt(0)),
+      eltBalance?.raw ?? JSBI.BigInt(0), // JSBI.add(eltBalance?.raw ?? JSBI.BigInt(0), eltUnclaimed?.raw ?? JSBI.BigInt(0)),
       eltUnHarvested?.raw ?? JSBI.BigInt(0)
     )
   )

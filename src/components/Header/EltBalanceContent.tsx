@@ -51,7 +51,7 @@ export default function EltBalanceContent({ setShowEltBalanceModal }: { setShowE
   const totalSupply: TokenAmount | undefined = useTotalSupply(elt)
   const eltPrice = useUSDCPrice(elt)
   const blockTimestamp = useCurrentBlockTimestamp()
-  const unclaimedElt = 0 // useTokenBalance(useMerkleDistributorContract()?.address, elt)
+  const unclaimedElt = undefined // useTokenBalance(useMerkleDistributorContract()?.address, elt)
   const circulation: TokenAmount | undefined = useMemo(
     () =>
       blockTimestamp && elt && chainId === ChainId.MAINNET
