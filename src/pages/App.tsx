@@ -8,8 +8,8 @@ import Polling from '../components/Header/Polling'
 import URLWarning from '../components/Header/URLWarning'
 import Popups from '../components/Popups'
 import Web3ReactManager from '../components/Web3ReactManager'
-import { ApplicationModal } from '../state/application/actions'
-import { useModalOpen, useToggleModal } from '../state/application/hooks'
+// import { ApplicationModal } from '../state/application/actions'
+// import { useModalOpen, useToggleModal } from '../state/application/hooks'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
 import AddLiquidity from './AddLiquidity'
 import {
@@ -24,9 +24,8 @@ import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import Swap from './Swap'
-import ELTSwap from './ELTSwap'
+// import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import { RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
-import { OpenClaimAddressModalAndRedirectToELTSwap, RedirectToELTSwap } from './ELTSwap/redirects'
 
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
@@ -91,10 +90,7 @@ export default function App() {
           <Web3ReactManager>
             <Switch>
               <Route exact strict path="/swap" component={Swap} />
-              <Route exact strict path="/eltswap" component={ELTSwap} />
-              <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToELTSwap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
-              <Route exact strict path="/eltswap/:outputCurrency" component={RedirectToELTSwap} />
               <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
               <Route exact strict path="/find" component={PoolFinder} />
               <Route exact strict path="/pool" component={Pool} />
