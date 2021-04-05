@@ -1,3 +1,4 @@
+/*
 import { JSBI, TokenAmount } from '@eliteswap/sdk'
 import { isAddress } from 'ethers/lib/utils'
 import React, { useEffect, useState } from 'react'
@@ -9,6 +10,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { ApplicationModal } from '../../state/application/actions'
 import { useModalOpen, useToggleSelfClaimModal } from '../../state/application/hooks'
 import { useClaimCallback, useUserClaimData, useUserUnclaimedAmount } from '../../state/claim/hooks'
+import { useUserClaimData, useUserUnclaimedAmount } from '../../state/claim/hooks'
 import { useUserHasSubmittedClaim } from '../../state/transactions/hooks'
 import { CloseIcon, CustomLightSpinner, ExternalLink, TYPE, EltTokenAnimated } from '../../theme'
 import { getEtherscanLink } from '../../utils'
@@ -203,3 +205,4 @@ export default function ClaimModal() {
     </Modal>
   )
 }
+*/

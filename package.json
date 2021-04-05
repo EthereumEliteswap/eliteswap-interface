@@ -4,7 +4,6 @@
   "homepage": ".",
   "private": true,
   "devDependencies": {
-    "@eliteswap/eliteswap-merkle-distributor": "1.0.1",
     "@eliteswap/governance": "1.0.3",
     "@eliteswap/liquidity-staker": "1.0.3",
     "@eliteswap/sdk": "3.0.5",

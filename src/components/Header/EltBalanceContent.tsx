@@ -6,7 +6,7 @@ import tokenLogo from '../../assets/images/token-logo.png'
 import { ELT } from '../../constants'
 import { useTotalSupply } from '../../data/TotalSupply'
 import { useActiveWeb3React } from '../../hooks'
-import { useMerkleDistributorContract } from '../../hooks/useContract'
+// import { useMerkleDistributorContract } from '../../hooks/useContract'
 import useCurrentBlockTimestamp from '../../hooks/useCurrentBlockTimestamp'
 import { useTotalEltEarned } from '../../state/stake/hooks'
 import { useAggregateEltBalance, useTokenBalance } from '../../state/wallet/hooks'
@@ -51,7 +51,7 @@ export default function EltBalanceContent({ setShowEltBalanceModal }: { setShowE
   const totalSupply: TokenAmount | undefined = useTotalSupply(elt)
   const eltPrice = useUSDCPrice(elt)
   const blockTimestamp = useCurrentBlockTimestamp()
-  const unclaimedElt = useTokenBalance(useMerkleDistributorContract()?.address, elt)
+  const unclaimedElt = 0 // useTokenBalance(useMerkleDistributorContract()?.address, elt)
   const circulation: TokenAmount | undefined = useMemo(
     () =>
       blockTimestamp && elt && chainId === ChainId.MAINNET

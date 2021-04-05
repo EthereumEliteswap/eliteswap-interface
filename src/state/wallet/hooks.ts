@@ -7,7 +7,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { useMulticallContract } from '../../hooks/useContract'
 import { isAddress } from '../../utils'
 import { useSingleContractMultipleData, useMultipleContractSingleData } from '../multicall/hooks'
-import { useUserUnclaimedAmount } from '../claim/hooks'
+// import { useUserUnclaimedAmount } from '../claim/hooks'
 import { useTotalEltEarned } from '../stake/hooks'
 
 /**
@@ -141,7 +141,7 @@ export function useAggregateEltBalance(): TokenAmount | undefined {
   const elt = chainId ? ELT[chainId] : undefined
 
   const eltBalance: TokenAmount | undefined = useTokenBalance(account ?? undefined, elt)
-  const eltUnclaimed: TokenAmount | undefined = useUserUnclaimedAmount(account)
+  const eltUnclaimed: TokenAmount | undefined = 0 // useUserUnclaimedAmount(account)
   const eltUnHarvested: TokenAmount | undefined = useTotalEltEarned()
 
   if (!elt) return undefined

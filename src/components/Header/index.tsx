@@ -21,9 +21,9 @@ import Menu from '../Menu'
 
 import Row, { RowFixed } from '../Row'
 import Web3Status from '../Web3Status'
-import ClaimModal from '../claim/ClaimModal'
+// import ClaimModal from '../claim/ClaimModal'
 import { useToggleSelfClaimModal, useShowClaimPopup } from '../../state/application/hooks'
-import { useUserHasAvailableClaim } from '../../state/claim/hooks'
+// import { useUserHasAvailableClaim } from '../../state/claim/hooks'
 import { useUserHasSubmittedClaim } from '../../state/transactions/hooks'
 import { Dots } from '../swap/styleds'
 import Modal from '../Modal'
@@ -281,7 +281,7 @@ export default function Header() {
 
   const toggleClaimModal = useToggleSelfClaimModal()
 
-  const availableClaim: boolean = useUserHasAvailableClaim(account)
+  const availableClaim: boolean = false // useUserHasAvailableClaim(account)
 
   const { claimTxn } = useUserHasSubmittedClaim(account ?? undefined)
 
@@ -305,7 +305,6 @@ export default function Header() {
 
   return (
     <HeaderFrame>
-      <ClaimModal />
       <Modal isOpen={showEltBalanceModal} onDismiss={() => setShowEltBalanceModal(false)}>
         <EltBalanceContent setShowEltBalanceModal={setShowEltBalanceModal} />
       </Modal>
