@@ -1,5 +1,5 @@
 import { ChainId, TokenAmount } from '@eliteswap/sdk'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Text } from 'rebass'
 import { NavLink } from 'react-router-dom'
 import { darken } from 'polished'
@@ -8,8 +8,8 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import Logo from '../../assets/images/eliteswap_logo.png'
+import LogoSmall from '../../assets/images/logo.png'
 import { useActiveWeb3React } from '../../hooks'
-import { useDarkModeManager } from '../../state/user/hooks'
 import { useETHBalances, useAggregateEltBalance } from '../../state/wallet/hooks'
 import { CardNoise } from '../earn/styled'
 import { CountUp } from 'use-count-up'
@@ -130,7 +130,7 @@ const ELTAmount = styled(AccountElement)`
   height: 36px;
   font-weight: 500;
   background-color: ${({ theme }) => theme.bg3};
-  background: radial-gradient(174.47% 188.91% at 1.84% 0%, #EE682E 0%, #2172e5 100%), #edeef2;
+  background: radial-gradient(174.47% 188.91% at 1.84% 0%, #ee682e 0%, #2172e5 100%), #edeef2;
 `
 
 const ELTWrapper = styled.span`
@@ -191,6 +191,14 @@ const EltIcon = styled.div`
   :hover {
     transform: rotate(-5deg);
   }
+  width: 150px;
+  > img {
+    display: block;
+    max-width: 100%;
+  }
+  @media (max-width: 560px) {
+    width: 60px;
+  }
 `
 
 const activeClassName = 'ACTIVE'
@@ -198,6 +206,11 @@ const activeClassName = 'ACTIVE'
 const StyledNavLink = styled(NavLink).attrs({
   activeClassName
 })`
+  ${({ theme }) => theme.mediaWidth.upToExtraSmall`
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 10px;
+  `};
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: left;
   border-radius: 3rem;
@@ -265,7 +278,6 @@ export default function Header() {
   const { t } = useTranslation()
 
   const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
-  const [isDark] = useDarkModeManager()
 
   const toggleClaimModal = useToggleSelfClaimModal()
 
@@ -280,6 +292,16 @@ export default function Header() {
 
   const countUpValue = aggregateBalance?.toFixed(0) ?? '0'
   const countUpValuePrevious = usePrevious(countUpValue) ?? '0'
+  const [width, setWidth] = useState(window.innerWidth)
+  const resizeWidth = () => {
+    setWidth(window.innerWidth)
+  }
+  useEffect(() => {
+    window.addEventListener('resize', resizeWidth)
+    return () => {
+      window.removeEventListener('resize', resizeWidth, false)
+    }
+  }, [])
 
   return (
     <HeaderFrame>
@@ -288,9 +310,9 @@ export default function Header() {
         <EltBalanceContent setShowEltBalanceModal={setShowEltBalanceModal} />
       </Modal>
       <HeaderRow>
-        <Title href=".">
+        <Title href="/">
           <EltIcon>
-            <img width={'120px'} src={isDark ? Logo : Logo} alt="logo" />
+            <img src={width > 560 ? Logo : LogoSmall} alt="logo" />
           </EltIcon>
         </Title>
         <HeaderLinks>
