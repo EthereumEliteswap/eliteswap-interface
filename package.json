@@ -8,7 +8,7 @@
     "@eliteswap/governance": "1.0.3",
     "@eliteswap/liquidity-staker": "1.0.3",
     "@eliteswap/sdk": "3.0.5",
-    "@eliteswap/token-lists": "1.0.2",
+    "@eliteswap/token-lists": "1.0.3",
     "@eliteswap/v2-periphery": "1.1.1",
     "@ethersproject/experimental": "^5.0.1",
     "@popperjs/core": "^2.4.4",
