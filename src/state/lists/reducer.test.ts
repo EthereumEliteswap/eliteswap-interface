@@ -414,7 +414,7 @@ describe('list reducer', () => {
       beforeEach(() => {
         store = createStore(reducer, {
           byUrl: {
-            'https://unpkg.com/@eliteswap/default-token-list@latest/eliteswap-default.tokenlist.json': {
+            'https://unpkg.com/@eliteswap/default-token-list@latest/build/eliteswap-default.tokenlist.json': {
               error: null,
               current: STUB_TOKEN_LIST,
               loadingRequestId: null,
@@ -435,7 +435,7 @@ describe('list reducer', () => {
       it('clears the current lists', () => {
         expect(
           store.getState().byUrl[
-            'https://unpkg.com/@eliteswap/default-token-list@latest/eliteswap-default.tokenlist.json'
+            'https://unpkg.com/@eliteswap/default-token-list@latest/build/eliteswap-default.tokenlist.json'
           ]
         ).toBeUndefined()
         expect(store.getState().byUrl['https://unpkg.com/@eliteswap/default-token-list@latest']).toBeUndefined()
@@ -483,7 +483,7 @@ describe('list reducer', () => {
       beforeEach(() => {
         store = createStore(reducer, {
           byUrl: {
-            'https://unpkg.com/@eliteswap/default-token-list@latest/eliteswap-default.tokenlist.json': {
+            'https://unpkg.com/@eliteswap/default-token-list@latest/build/eliteswap-default.tokenlist.json': {
               error: null,
               current: STUB_TOKEN_LIST,
               loadingRequestId: null,
@@ -505,7 +505,7 @@ describe('list reducer', () => {
       it('does not remove lists not in last initialized list of lists', () => {
         expect(
           store.getState().byUrl[
-            'https://unpkg.com/@eliteswap/default-token-list@latest/eliteswap-default.tokenlist.json'
+            'https://unpkg.com/@eliteswap/default-token-list@latest/build/eliteswap-default.tokenlist.json'
           ]
         ).toEqual({
           error: null,
@@ -527,7 +527,7 @@ describe('list reducer', () => {
         // note we don't expect the Elite Swap default list to be prepopulated
         // this is ok.
         Object.keys(byUrl).forEach(url => {
-          if (url !== 'https://unpkg.com/@eliteswap/default-token-list@latest/eliteswap-default.tokenlist.json') {
+          if (url !== 'https://unpkg.com/@eliteswap/default-token-list@latest/build/eliteswap-default.tokenlist.json') {
             expect(byUrl[url]).toEqual({
               error: null,
               current: null,

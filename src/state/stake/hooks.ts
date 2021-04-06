@@ -1,6 +1,6 @@
 import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WETH, Pair } from '@eliteswap/sdk'
 import { useMemo } from 'react'
-import { DAI, ELT, USDC, USDT, WBTC } from '../../constants'
+import { DAI, ELT, USDC, USDT, BTCB } from '../../constants'
 import { STAKING_REWARDS_INTERFACE } from '../../constants/abis/staking-rewards'
 import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
@@ -18,21 +18,21 @@ export const STAKING_REWARDS_INFO: {
     stakingRewardAddress: string
   }[]
 } = {
-  [ChainId.MAINNET]: [
+  [ChainId.BSC_MAINNET]: [
     {
-      tokens: [WETH[ChainId.MAINNET], DAI],
+      tokens: [WETH[ChainId.BSC_MAINNET], DAI],
       stakingRewardAddress: '0x6aa11da7ecA4f8f2F66BEFDd11b7C697606d913e'
     },
     {
-      tokens: [WETH[ChainId.MAINNET], USDC],
+      tokens: [WETH[ChainId.BSC_MAINNET], USDC],
       stakingRewardAddress: '0x1469f6cE0A7F82FF6403730f21714DC083d611a3'
     },
     {
-      tokens: [WETH[ChainId.MAINNET], USDT],
+      tokens: [WETH[ChainId.BSC_MAINNET], USDT],
       stakingRewardAddress: '0xBF2B5Be71Bc353906618A0BeF413F9c2E33f6dd4'
     },
     {
-      tokens: [WETH[ChainId.MAINNET], WBTC],
+      tokens: [WETH[ChainId.BSC_MAINNET], BTCB],
       stakingRewardAddress: '0xad064270150db970E3a10d0f492CAa87CAE678E1'
     }
   ]

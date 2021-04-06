@@ -267,10 +267,8 @@ const StyledExternalLink = styled(ExternalLink).attrs({
 `
 
 const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
-  [ChainId.RINKEBY]: 'Rinkeby',
-  [ChainId.ROPSTEN]: 'Ropsten',
-  [ChainId.GÖRLI]: 'Görli',
-  [ChainId.KOVAN]: 'Kovan'
+  [ChainId.BSC_MAINNET]: 'BSC Mainnet',
+  [ChainId.BSC_TESTNET]: 'BSC Testnet'
 }
 
 export default function Header() {

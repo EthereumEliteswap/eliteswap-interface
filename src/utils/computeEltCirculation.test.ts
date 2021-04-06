@@ -4,7 +4,7 @@ import { ZERO_ADDRESS } from '../constants'
 import { computeEltCirculation } from './computeEltCirculation'
 
 describe('computeEltCirculation', () => {
-  const token = new Token(ChainId.RINKEBY, ZERO_ADDRESS, 18)
+  const token = new Token(ChainId.BSC_TESTNET, ZERO_ADDRESS, 18)
 
   function expandTo18Decimals(num: JSBI | string | number) {
     return JSBI.multiply(JSBI.BigInt(num), JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18)))

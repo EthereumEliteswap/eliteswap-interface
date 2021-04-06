@@ -3,15 +3,16 @@ import { abi as GOVERNANCE_ABI } from '@eliteswap/governance/build/EliteGovernor
 import { abi as ELT_ABI } from '@eliteswap/governance/build/Elt.json'
 import { abi as STAKING_REWARDS_ABI } from '@eliteswap/liquidity-staker/build/EliteStakingRewards.json'
 // import { abi as MERKLE_DISTRIBUTOR_ABI } from '@eliteswap/eliteswap-merkle-distributor/build/EliteMerkleDistributor.json'
-import { ChainId, WETH } from '@eliteswap/sdk'
+// import { ChainId, WETH } from '@eliteswap/sdk'
+import { WETH } from '@eliteswap/sdk'
 import { abi as IEliteswapV2PairABI } from '@eliteswap/v2-core/build/IEliteswapV2Pair.json'
 import { useMemo } from 'react'
 // import { GOVERNANCE_ADDRESS, MERKLE_DISTRIBUTOR_ADDRESS, ELT } from '../constants'
 import { GOVERNANCE_ADDRESS, ELT } from '../constants'
-import {
-  ARGENT_WALLET_DETECTOR_ABI,
-  ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS
-} from '../constants/abis/argent-wallet-detector'
+// import {
+//   ARGENT_WALLET_DETECTOR_ABI,
+//   ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS
+// } from '../constants/abis/argent-wallet-detector'
 import ENS_PUBLIC_RESOLVER_ABI from '../constants/abis/ens-public-resolver.json'
 import ENS_ABI from '../constants/abis/ens-registrar.json'
 import { ERC20_BYTES32_ABI } from '../constants/abis/erc20'
@@ -45,28 +46,31 @@ export function useWETHContract(withSignerIfPossible?: boolean): Contract | null
   return useContract(chainId ? WETH[chainId].address : undefined, WETH_ABI, withSignerIfPossible)
 }
 
+/*
 export function useArgentWalletDetectorContract(): Contract | null {
   const { chainId } = useActiveWeb3React()
   return useContract(
-    chainId === ChainId.MAINNET ? ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS : undefined,
+    chainId === ChainId.BSC_MAINNET ? ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS : undefined,
     ARGENT_WALLET_DETECTOR_ABI,
     false
   )
 }
+*/
 
 export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contract | null {
-  const { chainId } = useActiveWeb3React()
+// const { chainId } = useActiveWeb3React()
   let address: string | undefined
+  address = undefined
+/* TODO: find ENS Registry with Fallback contract or alternative contract in bsc
   if (chainId) {
     switch (chainId) {
-      case ChainId.MAINNET:
-      case ChainId.GÖRLI:
-      case ChainId.ROPSTEN:
-      case ChainId.RINKEBY:
+      case ChainId.BSC_MAINNET:
+      case ChainId.BSC_TESTNET:
         address = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e'
         break
     }
   }
+*/
   return useContract(address, ENS_ABI, withSignerIfPossible)
 }
 

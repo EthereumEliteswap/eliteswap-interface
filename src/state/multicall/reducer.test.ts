@@ -8,7 +8,7 @@ import {
 import reducer, { MulticallState } from './reducer'
 import { Store, createStore } from '@reduxjs/toolkit'
 
-const DAI_ADDRESS = '0x6b175474e89094c44da98b954eedeac495271d0f'
+const DAI_ADDRESS = '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3'
 
 describe('multicall reducer', () => {
   let store: Store<MulticallState>
