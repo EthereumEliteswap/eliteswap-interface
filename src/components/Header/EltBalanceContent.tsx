@@ -54,7 +54,7 @@ export default function EltBalanceContent({ setShowEltBalanceModal }: { setShowE
   const unclaimedElt = undefined // useTokenBalance(useMerkleDistributorContract()?.address, elt)
   const circulation: TokenAmount | undefined = useMemo(
     () =>
-      blockTimestamp && elt && chainId === ChainId.MAINNET
+      blockTimestamp && elt && chainId === ChainId.BSC_MAINNET
         ? computeEltCirculation(elt, blockTimestamp, unclaimedElt)
         : totalSupply,
     [blockTimestamp, chainId, totalSupply, unclaimedElt, elt]
@@ -115,7 +115,7 @@ export default function EltBalanceContent({ setShowEltBalanceModal }: { setShowE
               <TYPE.white color="white">Total Supply</TYPE.white>
               <TYPE.white color="white">{totalSupply?.toFixed(0, { groupSeparator: ',' })}</TYPE.white>
             </RowBetween>
-            {elt && elt.chainId === ChainId.MAINNET ? (
+            {elt && elt.chainId === ChainId.BSC_MAINNET ? (
               <ExternalLink href={`https://eliteswap.io/info/token/${elt.address}`}>View ELT Analytics</ExternalLink>
             ) : null}
           </AutoColumn>

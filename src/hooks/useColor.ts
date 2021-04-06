@@ -5,11 +5,17 @@ import { hex } from 'wcag-contrast'
 import { Token, ChainId } from '@eliteswap/sdk'
 
 async function getColorFromToken(token: Token): Promise<string | null> {
-  if (token.chainId === ChainId.RINKEBY && token.address === '0xc7AD46e0b8a400Bb3C915120d284AafbA8fc4735') {
-    return Promise.resolve('#FAAB14')
+  // Wrapped BNB
+  if (token.chainId === ChainId.BSC_TESTNET && token.address === '0xaE8E19eFB41e7b96815649A6a60785e1fbA84C1e') {
+    return Promise.resolve('#F0B90B')
+  }
+  
+  // ELTB Token
+  if (token.chainId === ChainId.BSC_TESTNET && token.address === '0xbbAA1C83ea09b5cE0868E0171fE1898Cf7c3c291') {
+    return Promise.resolve('#408EF5')
   }
 
-  const path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${token.address}/logo.png`
+  const path = `https://exchange.pancakeswap.finance/images/coins/${token.address}.png`
 
   return Vibrant.from(path)
     .getPalette()
@@ -29,7 +35,7 @@ async function getColorFromToken(token: Token): Promise<string | null> {
 }
 
 export function useColor(token?: Token) {
-  const [color, setColor] = useState('#2172E5')
+  const [color, setColor] = useState('#F65900')
 
   useLayoutEffect(() => {
     let stale = false
@@ -44,7 +50,7 @@ export function useColor(token?: Token) {
 
     return () => {
       stale = true
-      setColor('#2172E5')
+      setColor('#F65900')
     }
   }, [token])
 

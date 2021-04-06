@@ -3,7 +3,7 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 
 import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
 
-export const ROUTER_ADDRESS = '0x60396a4e3EdEA506E6AFA7B9a3bf572B52d3D12c'
+export const ROUTER_ADDRESS = '0xCFD40aE8E1c28E1dBcb99d84c8918bbC27A9bF20'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
@@ -12,27 +12,29 @@ type ChainTokenList = {
   readonly [chainId in ChainId]: Token[]
 }
 
-export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
-export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
-export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
-export const COMP = new Token(ChainId.MAINNET, '0xc00e94Cb662C3520282E6f5717214004A7f26888', 18, 'COMP', 'Compound')
-export const MKR = new Token(ChainId.MAINNET, '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', 18, 'MKR', 'Maker')
-export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
-export const WBTC = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'WBTC', 'Wrapped BTC')
+export const DAI = new Token(ChainId.BSC_MAINNET, '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3', 18, 'DAI', 'Dai Stablecoin')
+export const USDC = new Token(ChainId.BSC_MAINNET, '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d', 18, 'USDC', 'USD//C')
+export const USDT = new Token(ChainId.BSC_MAINNET, '0x55d398326f99059fF775485246999027B3197955', 18, 'BUSD-T', 'BUSD-T Stablecoin')
+export const COMP = new Token(ChainId.BSC_MAINNET, '0x52CE071Bd9b1C4B00A0b92D298c512478CaD67e8', 18, 'COMP', 'Compound')
+export const MKR = new Token(ChainId.BSC_MAINNET, '0x5f0Da599BB2ccCfcf6Fdfd7D81743B6020864350', 18, 'MKR', 'Maker')
+export const BUSD = new Token(ChainId.BSC_MAINNET, '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56', 18, 'BUSD', 'Binance USD Stablecoin')
+export const BTCB = new Token(ChainId.BSC_MAINNET, '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18, 'BTCB', 'Binance BTC')
+export const ETH = new Token(ChainId.BSC_MAINNET, '0x2170Ed0880ac9A755fd29B2688956BD959F933F8', 18, 'ETH', 'ETH Token')
+// export const UST = new Token(ChainId.BSC_MAINNET, '0x23396cF899Ca06c4472205fC903bDB4de249D6fC', 18, 'UST', 'Wrapped UST Token')
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 14
 export const PROPOSAL_LENGTH_IN_BLOCKS = 40_320
 export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LENGTH_IN_BLOCKS
 
-export const GOVERNANCE_ADDRESS = '0x1E3776A7Bb9228E997806FA6Faf455B0bd4d77cc'
+export const GOVERNANCE_ADDRESS = '0xbbAA1C83ea09b5cE0868E0171fE1898Cf7c3c291'
 
-export const TIMELOCK_ADDRESS = '0x3Ce6feac2DC11a8799dC2a4B9434c5943E1c69EE'
+export const TIMELOCK_ADDRESS = '0x1E3776A7Bb9228E997806FA6Faf455B0bd4d77cc'
 
 const ELT_ADDRESS = '0x380291A9A8593B39f123cF39cc1cc47463330b1F'
 export const ELT: { [chainId in ChainId]: Token } | any = {
-  [ChainId.MAINNET]: new Token(ChainId.MAINNET, ELT_ADDRESS, 18, 'ELT', 'Elite Swap'),
-  [ChainId.ROPSTEN]: new Token(ChainId.ROPSTEN, ELT_ADDRESS, 18, 'ELT', 'Elite Swap')
+  [ChainId.BSC_MAINNET]: new Token(ChainId.BSC_MAINNET, ELT_ADDRESS, 18, 'ELTB', 'Elite Swap Binance Token'),
+  [ChainId.BSC_TESTNET]: new Token(ChainId.BSC_TESTNET, "0xbbAA1C83ea09b5cE0868E0171fE1898Cf7c3c291", 18, 'ELTB', 'Elite Swap Binance Token')
 }
 
 export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
@@ -43,23 +45,20 @@ export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {
 
 /*
 export const MERKLE_DISTRIBUTOR_ADDRESS: { [chainId in ChainId]?: string } = {
-  [ChainId.MAINNET]: '0x638C4a9E8a74e7AB0c442124007dB0516e66491B',
-  [ChainId.ROPSTEN]: '0xbd21f67478e3ed8662d51AA6cdDff5cd24BA8581'
+  [ChainId.BSC_MAINNET]: '0x638C4a9E8a74e7AB0c442124007dB0516e66491B',
+  [ChainId.BSC_TESTNET]: '0xbd21f67478e3ed8662d51AA6cdDff5cd24BA8581'
 }
 */
 
 const WETH_ONLY: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
-  [ChainId.ROPSTEN]: [WETH[ChainId.ROPSTEN]],
-  [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
-  [ChainId.GÖRLI]: [WETH[ChainId.GÖRLI]],
-  [ChainId.KOVAN]: [WETH[ChainId.KOVAN]]
+  [ChainId.BSC_MAINNET]: [WETH[ChainId.BSC_MAINNET]],
+  [ChainId.BSC_TESTNET]: [WETH[ChainId.BSC_TESTNET]]
 }
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT, COMP, MKR]
+  [ChainId.BSC_MAINNET]: [...WETH_ONLY[ChainId.BSC_MAINNET], DAI, USDC, USDT, COMP, MKR, BUSD, BTCB, ETH]
 }
 
 /**
@@ -67,29 +66,25 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
  * tokens.
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
-  [ChainId.MAINNET]: {
-    [AMPL.address]: [DAI, WETH[ChainId.MAINNET]]
+  [ChainId.BSC_MAINNET]: {
   }
 }
 
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT]
+  [ChainId.BSC_MAINNET]: [...WETH_ONLY[ChainId.BSC_MAINNET], DAI, USDC, USDT, BTCB, BUSD, ETH]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.MAINNET]: [...WETH_ONLY[ChainId.MAINNET], DAI, USDC, USDT]
+  [ChainId.BSC_MAINNET]: [...WETH_ONLY[ChainId.BSC_MAINNET], DAI, USDC, USDT, BTCB, BUSD, ETH]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
-  [ChainId.MAINNET]: [
-    [
-      new Token(ChainId.MAINNET, '0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643', 8, 'cDAI', 'Compound Dai'),
-      new Token(ChainId.MAINNET, '0x39AA39c021dfbaE8faC545936693aC917d5E7563', 8, 'cUSDC', 'Compound USD Coin')
-    ],
+  [ChainId.BSC_MAINNET]: [
+    [BTCB, USDT],
     [USDC, USDT],
     [DAI, USDT]
   ]
