@@ -118,17 +118,17 @@ export default function Manage({
   const WETH = currencyA === ETHER ? tokenA : tokenB
   const backgroundColor = useColor(token)
 
-  // get WETH value of staked LP tokens
+  // get WBNB value of staked LP tokens
   const totalSupplyOfStakingToken = useTotalSupply(stakingInfo?.stakedAmount?.token)
   let valueOfTotalStakedAmountInWETH: TokenAmount | undefined
   if (totalSupplyOfStakingToken && !disableTop && stakingTokenPair && stakingInfo && WETH) {
-    // take the total amount of LP tokens staked, multiply by ETH value of all LP tokens, divide by all LP tokens
+    // take the total amount of LP tokens staked, multiply by BNB value of all LP tokens, divide by all LP tokens
     valueOfTotalStakedAmountInWETH = new TokenAmount(
       WETH,
       JSBI.divide(
         JSBI.multiply(
           JSBI.multiply(stakingInfo.totalStakedAmount.raw, stakingTokenPair.reserveOf(WETH).raw),
-          JSBI.BigInt(2) // this is b/c the value of LP shares are ~double the value of the WETH they entitle owner to
+          JSBI.BigInt(2) // this is b/c the value of LP shares are ~double the value of the WBNB they entitle owner to
         ),
         totalSupplyOfStakingToken.raw
       )
@@ -138,7 +138,7 @@ export default function Manage({
   const countUpAmount = stakingInfo?.earnedAmount?.toFixed(6) ?? '0'
   const countUpAmountPrevious = usePrevious(countUpAmount) ?? '0'
 
-  // get the USD value of staked WETH
+  // get the USD value of staked WBNB
   const USDPrice = useUSDCPrice(WETH)
   const valueOfTotalStakedAmountInUSDC =
     valueOfTotalStakedAmountInWETH && 
@@ -171,7 +171,7 @@ export default function Manage({
             <TYPE.body fontSize={24} fontWeight={500}>
               {valueOfTotalStakedAmountInUSDC
                 ? `$${valueOfTotalStakedAmountInUSDC.toFixed(0, { groupSeparator: ',' })}`
-                : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ETH`}
+                : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} BNB`}
             </TYPE.body>
           </AutoColumn>
         </PoolData>

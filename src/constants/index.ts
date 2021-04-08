@@ -19,7 +19,7 @@ export const COMP = new Token(ChainId.BSC_MAINNET, '0x52CE071Bd9b1C4B00A0b92D298
 export const MKR = new Token(ChainId.BSC_MAINNET, '0x5f0Da599BB2ccCfcf6Fdfd7D81743B6020864350', 18, 'MKR', 'Maker')
 export const BUSD = new Token(ChainId.BSC_MAINNET, '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56', 18, 'BUSD', 'Binance USD Stablecoin')
 export const BTCB = new Token(ChainId.BSC_MAINNET, '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18, 'BTCB', 'Binance BTC')
-export const ETH = new Token(ChainId.BSC_MAINNET, '0x2170Ed0880ac9A755fd29B2688956BD959F933F8', 18, 'ETH', 'ETH Token')
+export const EthereumETH = new Token(ChainId.BSC_MAINNET, '0x2170Ed0880ac9A755fd29B2688956BD959F933F8', 18, 'ETH', 'ETH Token')
 // export const UST = new Token(ChainId.BSC_MAINNET, '0x23396cF899Ca06c4472205fC903bDB4de249D6fC', 18, 'UST', 'Wrapped UST Token')
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
@@ -58,7 +58,7 @@ const WETH_ONLY: ChainTokenList = {
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.BSC_MAINNET]: [...WETH_ONLY[ChainId.BSC_MAINNET], DAI, USDC, USDT, COMP, MKR, BUSD, BTCB, ETH]
+  [ChainId.BSC_MAINNET]: [...WETH_ONLY[ChainId.BSC_MAINNET], DAI, USDC, USDT, COMP, MKR, BUSD, BTCB, EthereumETH]
 }
 
 /**
@@ -73,13 +73,13 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.BSC_MAINNET]: [...WETH_ONLY[ChainId.BSC_MAINNET], DAI, USDC, USDT, BTCB, BUSD, ETH]
+  [ChainId.BSC_MAINNET]: [...WETH_ONLY[ChainId.BSC_MAINNET], DAI, USDC, USDT, BTCB, BUSD, EthereumETH]
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   ...WETH_ONLY,
-  [ChainId.BSC_MAINNET]: [...WETH_ONLY[ChainId.BSC_MAINNET], DAI, USDC, USDT, BTCB, BUSD, ETH]
+  [ChainId.BSC_MAINNET]: [...WETH_ONLY[ChainId.BSC_MAINNET], DAI, USDC, USDT, BTCB, BUSD, EthereumETH]
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
@@ -172,6 +172,6 @@ export const PRICE_IMPACT_WITHOUT_FEE_CONFIRM_MIN: Percent = new Percent(JSBI.Bi
 // for non expert mode disable swaps above this
 export const BLOCKED_PRICE_IMPACT_NON_EXPERT: Percent = new Percent(JSBI.BigInt(1500), BIPS_BASE) // 15%
 
-// used to ensure the user doesn't send so much ETH so they end up with <.01
-export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)) // .01 ETH
+// used to ensure the user doesn't send so much BNB so they end up with <.01
+export const MIN_ETH: JSBI = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(16)) // .01 BNB
 export const BETTER_TRADE_LINK_THRESHOLD = new Percent(JSBI.BigInt(75), JSBI.BigInt(10000))
