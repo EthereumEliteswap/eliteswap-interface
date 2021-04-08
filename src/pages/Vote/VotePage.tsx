@@ -190,7 +190,7 @@ export default function VotePage({
           {proposalData && proposalData.status === 'active' && !showVotingButtons && (
             <GreyCard>
               <TYPE.black>
-                Only ELT votes that were self delegated or delegated to another address before block{' '}
+                Only ELTB votes that were self delegated or delegated to another address before block{' '}
                 {proposalData.startBlock} are eligible for voting.{' '}
                 {showLinkForUnlock && (
                   <span>

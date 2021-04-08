@@ -186,7 +186,7 @@ export function useDelegateCallback(): (delegatee: string | undefined) => undefi
     (delegatee: string | undefined) => {
       if (!library || !chainId || !account || !isAddress(delegatee ?? '')) return undefined
       const args = [delegatee]
-      if (!eltContract) throw new Error('No ELT Contract!')
+      if (!eltContract) throw new Error('No ELTB Contract!')
       return eltContract.estimateGas.delegate(...args, {}).then(estimatedGasLimit => {
         return eltContract
           .delegate(...args, { value: null, gasLimit: calculateGasMargin(estimatedGasLimit) })

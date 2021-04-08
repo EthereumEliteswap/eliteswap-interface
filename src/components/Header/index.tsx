@@ -330,7 +330,7 @@ export default function Header() {
             {t('pool')}
           </StyledNavLink>
           <StyledNavLink id={`stake-nav-link`} to={'/elt'}>
-            ELT
+            ELTB
           </StyledNavLink>
           <StyledNavLink id={`stake-nav-link`} to={'/vote'}>
             Vote
@@ -351,7 +351,7 @@ export default function Header() {
             <ELTWrapper onClick={toggleClaimModal}>
               <ELTAmount active={!!account && !availableClaim} style={{ pointerEvents: 'auto' }}>
                 <TYPE.white padding="0 2px">
-                  {claimTxn && !claimTxn?.receipt ? <Dots>Claiming ELT</Dots> : 'Claim ELT'}
+                  {claimTxn && !claimTxn?.receipt ? <Dots>Claiming ELTB</Dots> : 'Claim ELTB'}
                 </TYPE.white>
               </ELTAmount>
               <CardNoise />
@@ -378,7 +378,7 @@ export default function Header() {
                     </TYPE.white>
                   </HideSmall>
                 )}
-                ELT
+                ELTB
               </ELTAmount>
               <CardNoise />
             </ELTWrapper>
