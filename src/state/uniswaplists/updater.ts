@@ -12,9 +12,9 @@ import { acceptListUpdate } from './actions'
 export default function Updater(): null {
   const { library } = useActiveWeb3React()
   const dispatch = useDispatch<AppDispatch>()
-  const lists = useSelector<AppState, AppState['lists']['byUrl']>(state => state.lists.byUrl)
-  const selectedListUrl = useSelector<AppState, AppState['lists']['selectedListUrl']>(
-    state => state.lists.selectedListUrl
+  const lists = useSelector<AppState, AppState['uniswaplists']['byUniswapUrl']>(state => state.uniswaplists.byUniswapUrl)
+  const selectedUniswapListUrl = useSelector<AppState, AppState['uniswaplists']['selectedUniswapListUrl']>(
+    state => state.uniswaplists.selectedUniswapListUrl
   )
 
   const isWindowVisible = useIsWindowVisible()
@@ -57,7 +57,7 @@ export default function Updater(): null {
             // automatically update minor/patch as long as bump matches the min update
             if (bump >= min) {
               dispatch(acceptListUpdate(listUrl))
-              if (listUrl === selectedListUrl) {
+              if (listUrl === selectedUniswapListUrl) {
                 dispatch(
                   addPopup({
                     key: listUrl,
@@ -80,7 +80,7 @@ export default function Updater(): null {
             break
 
           case VersionUpgrade.MAJOR:
-            if (listUrl === selectedListUrl) {
+            if (listUrl === selectedUniswapListUrl) {
               dispatch(
                 addPopup({
                   key: listUrl,
@@ -99,7 +99,7 @@ export default function Updater(): null {
         }
       }
     })
-  }, [dispatch, lists, selectedListUrl])
+  }, [dispatch, lists, selectedUniswapListUrl])
 
   return null
 }

@@ -71,7 +71,7 @@ export function listToTokenMap(list: TokenList): TokenAddressMap {
 }
 
 export function useTokenList(url: string | undefined): TokenAddressMap {
-  const lists = useSelector<AppState, AppState['uniswaplists']['byUrl']>(state => state.uniswaplists.byUrl)
+  const lists = useSelector<AppState, AppState['uniswaplists']['byUniswapUrl']>(state => state.uniswaplists.byUniswapUrl)
   return useMemo(() => {
     if (!url) return EMPTY_LIST
     const current = lists[url]?.current
@@ -86,7 +86,7 @@ export function useTokenList(url: string | undefined): TokenAddressMap {
 }
 
 export function useSelectedListUrl(): string | undefined {
-  return useSelector<AppState, AppState['uniswaplists']['selectedListUrl']>(state => state.uniswaplists.selectedListUrl)
+  return useSelector<AppState, AppState['uniswaplists']['selectedUniswapListUrl']>(state => state.uniswaplists.selectedUniswapListUrl)
 }
 
 export function useUniswapSelectedTokenList(): TokenAddressMap {
@@ -95,7 +95,7 @@ export function useUniswapSelectedTokenList(): TokenAddressMap {
 
 export function useUniswapSelectedListInfo(): { current: TokenList | null; pending: TokenList | null; loading: boolean } {
   const selectedUrl = useSelectedListUrl()
-  const listsByUrl = useSelector<AppState, AppState['uniswaplists']['byUrl']>(state => state.uniswaplists.byUrl)
+  const listsByUrl = useSelector<AppState, AppState['uniswaplists']['byUniswapUrl']>(state => state.uniswaplists.byUniswapUrl)
   const list = selectedUrl ? listsByUrl[selectedUrl] : undefined
   return {
     current: list?.current ?? null,
@@ -106,7 +106,7 @@ export function useUniswapSelectedListInfo(): { current: TokenList | null; pendi
 
 // returns all downloaded current lists
 export function useAllLists(): TokenList[] {
-  const lists = useSelector<AppState, AppState['uniswaplists']['byUrl']>(state => state.uniswaplists.byUrl)
+  const lists = useSelector<AppState, AppState['uniswaplists']['byUniswapUrl']>(state => state.uniswaplists.byUniswapUrl)
 
   return useMemo(
     () =>
