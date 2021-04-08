@@ -134,7 +134,7 @@ export function useAllTokenBalances(): { [tokenAddress: string]: TokenAmount | u
   return balances ?? {}
 }
 
-// get the total owned, unclaimed, and unharvested ELT for account
+// get the total owned, unclaimed, and unharvested ELTB for account
 export function useAggregateEltBalance(): TokenAmount | undefined {
   const { account, chainId } = useActiveWeb3React()
 

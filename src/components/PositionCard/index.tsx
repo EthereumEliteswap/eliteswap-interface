@@ -204,7 +204,7 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
             </Text>
             {!!stakedBalance && (
               <ButtonELTGradient as={Link} to={`/elt/${currencyId(currency0)}/${currencyId(currency1)}`}>
-                <HideExtraSmall>Earning ELT</HideExtraSmall>
+                <HideExtraSmall>Earning ELTB</HideExtraSmall>
                 <ExtraSmallOnly>
                   <span role="img" aria-label="bolt">
                     ⚡

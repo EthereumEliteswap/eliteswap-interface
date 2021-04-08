@@ -184,7 +184,7 @@ export default function Manage({
                     ?.multiply(BIG_INT_SECONDS_IN_WEEK)
                     ?.toFixed(0, { groupSeparator: ',' }) ?? '-'
                 : '0'}
-              {' ELT / week'}
+              {' ELTB / week'}
             </TYPE.body>
           </AutoColumn>
         </PoolData>
@@ -264,7 +264,7 @@ export default function Manage({
             <AutoColumn gap="sm">
               <RowBetween>
                 <div>
-                  <TYPE.black>Your unclaimed ELT</TYPE.black>
+                  <TYPE.black>Your unclaimed ELTB</TYPE.black>
                 </div>
                 {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                   <ButtonEmpty
@@ -298,7 +298,7 @@ export default function Manage({
                         ?.multiply(BIG_INT_SECONDS_IN_WEEK)
                         ?.toSignificant(4, { groupSeparator: ',' }) ?? '-'
                     : '0'}
-                  {' ELT / week'}
+                  {' ELTB / week'}
                 </TYPE.black>
               </RowBetween>
             </AutoColumn>
@@ -308,7 +308,7 @@ export default function Manage({
           <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
             ⭐️
           </span>
-          When you withdraw, the contract will automagically claim ELT on your behalf!
+          When you withdraw, the contract will automagically claim ELTB on your behalf!
         </TYPE.main>
 
         {!showAddLiquidityButton && (
