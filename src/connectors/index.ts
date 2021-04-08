@@ -27,12 +27,12 @@ export function getNetworkLibrary(): Web3Provider {
 }
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [1, 3, 4, 5, 42]
+  supportedChainIds: [56, 97]
 })
 
 // mainnet only
 export const walletconnect = new WalletConnectConnector({
-  rpc: { 1: NETWORK_URL },
+  rpc: { 56: NETWORK_URL },
   bridge: 'https://bridge.walletconnect.org',
   qrcode: true,
   pollingInterval: 15000
@@ -41,19 +41,18 @@ export const walletconnect = new WalletConnectConnector({
 // mainnet only
 export const fortmatic = new FortmaticConnector({
   apiKey: FORMATIC_KEY ?? '',
-  chainId: 1
+  chainId: 56
 })
 
 // mainnet only
 export const portis = new PortisConnector({
   dAppId: PORTIS_ID ?? '',
-  networks: [1]
+  networks: [56]
 })
 
 // mainnet only
 export const walletlink = new WalletLinkConnector({
   url: NETWORK_URL,
   appName: 'Elite Swap',
-  appLogoUrl:
-    'https://mpng.pngfly.com/20181202/bex/kisspng-emoji-domain-unicorn-pin-badges-sticker-unicorn-tumblr-emoji-unicorn-iphoneemoji-5c046729264a77.5671679315437924251569.jpg'
+  appLogoUrl: 'https://raw.githubusercontent.com/EthereumEliteswap/default-token-list/bsc/src/assets/bsc/0x380291A9A8593B39f123cF39cc1cc47463330b1F/ELTB_logo.png'
 })
