@@ -1,7 +1,7 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@eliteswap/sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
-import { injected, portis, walletconnect, walletlink } from '../connectors'
+import { injected, walletconnect, walletlink } from '../connectors'
 
 export const ROUTER_ADDRESS = '0xCFD40aE8E1c28E1dBcb99d84c8918bbC27A9bF20'
 
@@ -145,15 +145,6 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     color: '#315CF5',
     mobile: true,
     mobileOnly: true
-  },
-  Portis: {
-    connector: portis,
-    name: 'Portis',
-    iconName: 'portisIcon.png',
-    description: 'Login using Portis hosted wallet',
-    href: null,
-    color: '#4A6C9B',
-    mobile: true
   }
 }
 
