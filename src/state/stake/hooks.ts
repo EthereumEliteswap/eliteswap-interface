@@ -7,7 +7,7 @@ import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
 import { tryParseAmount } from '../swap/hooks'
 import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
 
-export const STAKING_GENESIS = 1605484800
+export const STAKING_GENESIS = 1618012800
 
 export const REWARDS_DURATION_DAYS = 60
 
@@ -21,19 +21,19 @@ export const STAKING_REWARDS_INFO: {
   [ChainId.BSC_MAINNET]: [
     {
       tokens: [WETH[ChainId.BSC_MAINNET], DAI],
-      stakingRewardAddress: '0x6aa11da7ecA4f8f2F66BEFDd11b7C697606d913e'
+      stakingRewardAddress: '0x320b0ba5a0729aeB6c64ed3a9ffAf95d5a2e8C52'
     },
     {
       tokens: [WETH[ChainId.BSC_MAINNET], USDC],
-      stakingRewardAddress: '0x1469f6cE0A7F82FF6403730f21714DC083d611a3'
+      stakingRewardAddress: '0x7420E231b7c57e38D775E6330303495906724AeF'
     },
     {
       tokens: [WETH[ChainId.BSC_MAINNET], USDT],
-      stakingRewardAddress: '0xBF2B5Be71Bc353906618A0BeF413F9c2E33f6dd4'
+      stakingRewardAddress: '0x95C3b5A4033DE805Bf678aC698Df204d6f035DBD'
     },
     {
       tokens: [WETH[ChainId.BSC_MAINNET], BTCB],
-      stakingRewardAddress: '0xad064270150db970E3a10d0f492CAa87CAE678E1'
+      stakingRewardAddress: '0xE910FeB749DeE8a6D65Ecf2E43b8d45F3c0BE63D'
     }
   ]
 }
