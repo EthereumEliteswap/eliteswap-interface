@@ -172,6 +172,11 @@ function Web3StatusInner() {
   const hasPendingTransactions = !!pending.length
   const toggleWalletModal = useWalletModalToggle()
 
+  const redirectToBSC = () => {
+    window.history.pushState({}, 'bsc', '/bsc/')
+    window.location.reload()
+  }
+
   if (account) {
     return (
       <Web3StatusConnected id="web3-status-connected" onClick={toggleWalletModal} pending={hasPendingTransactions}>
@@ -189,6 +194,14 @@ function Web3StatusInner() {
       </Web3StatusConnected>
     )
   } else if (error) {
+    if (error instanceof UnsupportedChainIdError) {
+      const errorChainId = parseInt(error.toString().split(':')[2])
+      const bscChainIds = process.env.REACT_APP_BSC_CHAIN_IDS ? process.env.REACT_APP_BSC_CHAIN_IDS.split(',').map(Number) : []
+
+      if (bscChainIds.includes(errorChainId)) {
+        redirectToBSC()
+      }
+    }
     return (
       <Web3StatusError onClick={toggleWalletModal}>
         <NetworkIcon />
