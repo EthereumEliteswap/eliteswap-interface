@@ -33,4 +33,5 @@ cypress/videos
 cypress/screenshots
 cypress/fixtures/example.json
 
+*.zip
 yarn.lock

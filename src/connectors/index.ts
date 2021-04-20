@@ -7,7 +7,7 @@ import { NetworkConnector } from './NetworkConnector'
 
 const NETWORK_URL = process.env.REACT_APP_NETWORK_URL
 
-export const NETWORK_CHAIN_ID: number = parseInt(process.env.REACT_APP_CHAIN_ID ?? '56')
+export const NETWORK_CHAIN_ID: number = parseInt(process.env.REACT_APP_DEFAULT_CHAIN_ID ?? '56')
 
 if (typeof NETWORK_URL === 'undefined') {
   throw new Error(`REACT_APP_NETWORK_URL must be a defined environment variable`)
@@ -23,7 +23,7 @@ export function getNetworkLibrary(): Web3Provider {
 }
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [56, 97]
+  supportedChainIds: process.env.REACT_APP_BSC_CHAIN_IDS ? process.env.REACT_APP_BSC_CHAIN_IDS.split(',').map(Number) : [56]
 })
 
 // mainnet only
