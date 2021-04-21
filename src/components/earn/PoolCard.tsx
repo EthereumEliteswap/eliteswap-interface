@@ -87,7 +87,7 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
 
   // let returnOverMonth: Percent = new Percent('0')
   let valueOfTotalStakedAmountInWETH: TokenAmount | undefined
-  if (totalSupplyOfStakingToken && isStaking && stakingTokenPair) {
+  if (totalSupplyOfStakingToken && stakingTokenPair) {
     // take the total amount of LP tokens staked, multiply by BNB value of all LP tokens, divide by all LP tokens
     valueOfTotalStakedAmountInWETH = new TokenAmount(
       WETH,
